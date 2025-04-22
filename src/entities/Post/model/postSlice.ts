@@ -8,36 +8,36 @@ interface Post {
 }
 
 interface PostState {
-  posts: Post[];
+  post: Post[];
   currentPost: Post | null;
 }
 
 const initialState: PostState = {
-  posts: [
+  post: [
     {
       id: 1,
-      title: 'Post 1',
-      description: 'Description 1',
-      image: 'https://placehold.co/180',
+      title: 'title',
+      description: "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
+      image: 'https://placehold.co/180x180/png',
     },
     {
       id: 2,
-      title: 'Post 2',
-      description: 'Description 2',
-      image: 'https://placehold.co/180',
+      title: 'title',
+      description: "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
+      image: 'https://placehold.co/180x180/png',
     },
     {
       id: 3,
-      title: 'Post 3',
-      description: 'Description 3',
-      image: 'https://placehold.co/180',
+      title: 'title',
+      description: "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
+      image: 'https://placehold.co/180x180/png',
     },
     {
       id: 4,
-      title: 'Post 4',
-      description: 'Description 4',
-      image: 'https://placehold.co/180',
-    },
+      title: 'title',
+      description: "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
+      image: 'https://placehold.co/180x180/png',
+    }
   ],
   currentPost: null,
 };
