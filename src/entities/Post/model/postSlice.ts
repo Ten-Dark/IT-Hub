@@ -1,17 +1,44 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Post {
-  id: string;
+  id: number;
   title: string;
   description: string;
   image: string;
 }
 
 interface PostState {
+  post: Post[];
   currentPost: Post | null;
 }
 
 const initialState: PostState = {
+  post: [
+    {
+      id: 1,
+      title: 'title',
+      description: 'description',
+      image: 'https://placehold.co/200x200/png',
+    },
+    {
+      id: 2,
+      title: 'title',
+      description: 'description',
+      image: 'https://placehold.co/200x200/png',
+    },
+    {
+      id: 3,
+      title: 'title',
+      description: 'description',
+      image: 'https://placehold.co/200x200/png',
+    },
+    {
+      id: 4,
+      title: 'title',
+      description: 'description',
+      image: 'https://placehold.co/200x200/png',
+    }
+  ],
   currentPost: null,
 };
 
