@@ -8,36 +8,36 @@ interface Post {
 }
 
 interface PostState {
-  post: Post[];
+  posts: Post[];
   currentPost: Post | null;
 }
 
 const initialState: PostState = {
-  post: [
+  posts: [
     {
       id: 1,
-      title: 'title',
-      description: 'description',
-      image: 'https://placehold.co/200x200/png',
+      title: 'Post 1',
+      description: 'Description 1',
+      image: 'https://placehold.co/180',
     },
     {
       id: 2,
-      title: 'title',
-      description: 'description',
-      image: 'https://placehold.co/200x200/png',
+      title: 'Post 2',
+      description: 'Description 2',
+      image: 'https://placehold.co/180',
     },
     {
       id: 3,
-      title: 'title',
-      description: 'description',
-      image: 'https://placehold.co/200x200/png',
+      title: 'Post 3',
+      description: 'Description 3',
+      image: 'https://placehold.co/180',
     },
     {
       id: 4,
-      title: 'title',
-      description: 'description',
-      image: 'https://placehold.co/200x200/png',
-    }
+      title: 'Post 4',
+      description: 'Description 4',
+      image: 'https://placehold.co/180',
+    },
   ],
   currentPost: null,
 };
