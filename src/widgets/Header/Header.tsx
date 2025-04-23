@@ -17,9 +17,8 @@ const Header = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
 
-  const weekday = { weekday: 'short' };
-  const month = { month: 'long' };
-  // const day = date.toLocaleString('ru-RU', options)
+  const weekday: object = { weekday: 'long' };
+  const month: object = { month: 'long' };
 
   useEffect(() => {
     setInterval(() => {
