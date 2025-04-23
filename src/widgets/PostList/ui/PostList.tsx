@@ -8,7 +8,7 @@ import {
 import { LiaComments } from 'react-icons/lia';
 
 export const PostList = () => {
-  const selector = useAppSelector((state) => state.post);
+  const selector = useAppSelector((state) => state.posts);
   return (
     <S.PostContainer>
       {selector.posts.map((post) => (
@@ -28,18 +28,10 @@ export const PostList = () => {
             <S.PostFeatures>
               <p>Category</p>
               <S.postActions>
-                <p>
-                  <MdFavoriteBorder size={24} />
-                </p>
-                <p>
-                  <LiaComments size={24} />
-                </p>
-                <p>
-                  <MdOutlineBookmarks size={24} />
-                </p>
-                <p>
-                  <MdOutlineShare size={24} />
-                </p>
+                <MdFavoriteBorder size={24} />
+                <LiaComments size={24} />
+                <MdOutlineBookmarks size={24} />
+                <MdOutlineShare size={24} />
               </S.postActions>
             </S.PostFeatures>
           </S.PostBody>
