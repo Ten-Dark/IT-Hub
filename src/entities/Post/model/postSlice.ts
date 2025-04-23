@@ -8,36 +8,40 @@ interface Post {
 }
 
 interface PostState {
-  post: Post[];
+  posts: Post[];
   currentPost: Post | null;
 }
 
 const initialState: PostState = {
-  post: [
+  posts: [
     {
       id: 1,
       title: 'title',
-      description: "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
+      description:
+        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
       image: 'https://placehold.co/180x180/png',
     },
     {
       id: 2,
       title: 'title',
-      description: "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
+      description:
+        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
       image: 'https://placehold.co/180x180/png',
     },
     {
       id: 3,
       title: 'title',
-      description: "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
+      description:
+        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
       image: 'https://placehold.co/180x180/png',
     },
     {
       id: 4,
       title: 'title',
-      description: "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
+      description:
+        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
       image: 'https://placehold.co/180x180/png',
-    }
+    },
   ],
   currentPost: null,
 };
