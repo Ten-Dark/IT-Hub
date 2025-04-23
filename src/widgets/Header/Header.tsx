@@ -16,10 +16,8 @@ const Header = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-
   const weekday: object = { weekday: 'short' };
   const month: object = { month: 'long' };
-  // const day = date.toLocaleString('ru-RU', options)
 
   useEffect(() => {
     setInterval(() => {
@@ -48,8 +46,8 @@ const Header = () => {
           <S.Logo $active={active}>IT-HUB</S.Logo>
           <S.Div>
             <S.Search $active={active}>
-              <IoSearch onClick={() => setActive(!active)}/>
-              <S.Input ref={inputRef} $active={active}/>
+              <IoSearch onClick={() => setActive(!active)} />
+              <S.Input ref={inputRef} $active={active} />
             </S.Search>
             <S.Personal>
               <Auth />
