@@ -88,5 +88,8 @@ export const postActions = styled.div`
   justify-content: center;
   gap: 0 10px;
   color: black;
+
+  & svg {
     cursor: pointer;
+  }
 `;
