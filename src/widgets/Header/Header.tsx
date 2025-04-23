@@ -17,8 +17,8 @@ const Header = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
 
-  const weekday = { weekday: 'short' };
-  const month = { month: 'long' };
+  const weekday: object = { weekday: 'short' };
+  const month: object = { month: 'long' };
   // const day = date.toLocaleString('ru-RU', options)
 
   useEffect(() => {
