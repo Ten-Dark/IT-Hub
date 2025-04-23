@@ -2,11 +2,8 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '@/entities/User/model/userSlice.ts';
 import styled from 'styled-components';
 import * as React from 'react';
+import { IoPersonSharp } from "react-icons/io5";
 
-const Button = styled.div`
-  background-color: black;
-  color: antiquewhite;
-`;
 
 export const Auth: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,5 +14,5 @@ export const Auth: React.FC = () => {
     console.log(user);
   };
 
-  return <Button onClick={handleLogin}>Login</Button>;
+  return <IoPersonSharp onClick={handleLogin}>Login</IoPersonSharp>;
 };

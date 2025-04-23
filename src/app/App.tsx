@@ -1,12 +1,8 @@
+import Header from '@/widgets/Header/Header';
 import './App.css';
-import { Auth } from '@/features/Auth/ui/Auth.tsx';
 
 function App() {
-  return (
-    <>
-      <Auth />
-    </>
-  );
+  return <Header />;
 }
 
 export default App;
