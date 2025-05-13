@@ -4,10 +4,11 @@ import { DefaultTheme } from 'styled-components';
 export const theme: DefaultTheme = {
   colors: {
     primary: '#2B2B2B',
-    secondary: '#3F3F3F',
+    secondary: '#4A4A4A',
     background: '#D0D0D0',
-    text: '#4A4A4A',
-    link: '#06B49A',
+    background2: '#F3DEDE',
+    text: '#3F3F3F',
+    link: '#7D6868',
   },
   fonts: {
     main: 'Montserrat',
