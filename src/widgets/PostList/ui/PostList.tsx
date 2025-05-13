@@ -13,20 +13,23 @@ export const PostList = () => {
     <S.PostContainer>
       {selector.posts.map((post) => (
         <S.PostItem key={post.id}>
+          <img src={post.image} alt={post.title} />
           <S.PostBody>
-            <S.PostAuthor>
-              <img src="https://i.pravatar.cc/150" alt="avatar" />
-              <S.PostAuthorInfo>
-                <S.PostAuthorName>Author</S.PostAuthorName>
-                <S.PostAuthorDate>Date</S.PostAuthorDate>
-              </S.PostAuthorInfo>
-            </S.PostAuthor>
             <S.PostInfo>
-              <S.PostTitle>{post.title}</S.PostTitle>
-              <S.PostDescription>{post.description}</S.PostDescription>
+              <S.PostAuthor>
+                <img src="https://i.pravatar.cc/150" alt="avatar" />
+                <S.PostAuthorInfo>
+                  <S.PostAuthorName>Author</S.PostAuthorName>
+                  <S.PostAuthorDate>Date</S.PostAuthorDate>
+                </S.PostAuthorInfo>
+              </S.PostAuthor>
+              <S.PostContentInfo>
+                <S.PostTitle>{post.title}</S.PostTitle>
+                <S.PostDescription>{post.description}</S.PostDescription>
+              </S.PostContentInfo>
             </S.PostInfo>
             <S.PostFeatures>
-              <p>Category</p>
+              <S.PostCategory>Category</S.PostCategory>
               <S.postActions>
                 <MdFavoriteBorder size={24} />
                 <LiaComments size={24} />
@@ -35,7 +38,6 @@ export const PostList = () => {
               </S.postActions>
             </S.PostFeatures>
           </S.PostBody>
-          <img src={post.image} alt={post.title} />
         </S.PostItem>
       ))}
     </S.PostContainer>
