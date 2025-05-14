@@ -5,7 +5,7 @@ import { postReducer } from '@/entities/Post/model/postSlice.ts';
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    post: postReducer,
+    posts: postReducer,
   },
 });
 
