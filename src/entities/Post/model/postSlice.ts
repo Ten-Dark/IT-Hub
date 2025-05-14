@@ -1,16 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface Post {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-}
-
-interface PostState {
-  posts: Post[];
-  currentPost: Post | null;
-}
+import { Post, PostState } from '@/entities/Post/model/types.ts';
 
 const initialState: PostState = {
   posts: [
