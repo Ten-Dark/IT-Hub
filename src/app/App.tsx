@@ -1,11 +1,12 @@
-import Header from '@/widgets/Header/Header';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '@/shared/config/theme/theme.ts';
-import { GlobalStyles } from '@/shared/config/theme/GlobalStyles.ts';
-import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
-import * as S from './App.styled.ts';
-import { useEffect } from 'react';
 import { account } from '@/shared/config/appwrite';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from '@/shared/config/theme/GlobalStyles.ts';
+import { theme } from '@/shared/config/theme/theme.ts';
+import * as S from './App.styled.ts';
+import Header from '@/widgets/Header/Header';
+import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
+import { Sidebar } from '@/widgets/Sidebar/Sidebar.tsx';
+import { useEffect } from 'react';
 
 function App() {
   useEffect(() => {
@@ -16,7 +17,10 @@ function App() {
       <GlobalStyles />
       <S.AppContainer>
         <Header />
-        <PostList />
+        <S.Content>
+          <PostList />
+          <Sidebar />
+        </S.Content>
       </S.AppContainer>
     </ThemeProvider>
   );
