@@ -16,6 +16,7 @@ export const PostList = () => {
           <img src={post.image} alt={post.title} />
           <S.PostBody>
             <S.PostInfo>
+
               <S.PostAuthor>
                 <img src="https://i.pravatar.cc/150" alt="avatar" />
                 <S.PostAuthorInfo>
@@ -23,10 +24,12 @@ export const PostList = () => {
                   <S.PostAuthorDate>Date</S.PostAuthorDate>
                 </S.PostAuthorInfo>
               </S.PostAuthor>
+
               <S.PostContentInfo>
                 <S.PostTitle>{post.title}</S.PostTitle>
                 <S.PostDescription>{post.description}</S.PostDescription>
               </S.PostContentInfo>
+
             </S.PostInfo>
             <S.PostFeatures>
               <S.PostCategory>Category</S.PostCategory>
