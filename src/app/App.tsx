@@ -7,6 +7,7 @@ import Header from '@/widgets/Header/Header';
 import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
 import { Sidebar } from '@/widgets/Sidebar/Sidebar.tsx';
 import { useEffect } from 'react';
+import { PostAddForm } from '@/widgets/PostAdd/ui/PostAddForm.tsx';
 
 function App() {
   useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
           <PostList />
           <Sidebar />
         </S.Content>
+        <PostAddForm />
       </S.AppContainer>
     </ThemeProvider>
   );
