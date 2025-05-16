@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PostContainer = styled.div`
-  max-width: 1000px;
+  max-width: 57rem;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -26,15 +26,21 @@ export const PostBody = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  padding: 0 50px;
-  gap: 15px 0;
+  padding: 0 18px;
+`;
+
+export const PostInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
+  gap: 8px 0;
 `;
 
 export const PostAuthor = styled.div`
   display: flex;
   align-items: center;
-  font-size: 16px;
-  gap: 0 15px;
+  gap: 0 8px;
 
   & img {
     height: 50px;
@@ -58,21 +64,22 @@ export const PostAuthorDate = styled.p`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.text};
 `;
-export const PostInfo = styled.div`
+export const PostContentInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 5px 0;
+  gap: 2px 0;
 `;
 export const PostTitle = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 24px;
   color: ${({ theme }) => theme.colors.primary};
 `;
 export const PostDescription = styled.p`
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 20px;
   color: ${({ theme }) => theme.colors.text};
 `;
@@ -81,6 +88,14 @@ export const PostFeatures = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  color: ${({ theme }) => theme.colors.link};
+  font-weight: 600;
+  font-size: 14px;
+`;
+export const PostCategory = styled.p`
+  background-color: ${({ theme }) => theme.colors.background2};
+  padding: 6px 8px;
+  border-radius: 8px;
 `;
 export const postActions = styled.div`
   display: flex;
@@ -88,5 +103,8 @@ export const postActions = styled.div`
   justify-content: center;
   gap: 0 10px;
   color: black;
+
+  & svg {
     cursor: pointer;
+  }
 `;
