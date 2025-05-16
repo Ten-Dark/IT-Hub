@@ -1,7 +1,7 @@
+import { account } from '@/shared/config/appwrite';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '@/shared/config/theme/theme.ts';
 import { GlobalStyles } from '@/shared/config/theme/GlobalStyles.ts';
-import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
+import { theme } from '@/shared/config/theme/theme.ts';
 import * as S from './App.styled.ts';
 import { Route, Routes } from 'react-router-dom';
 import Profile from '@/pages/Profile.tsx';
@@ -11,10 +11,15 @@ import AuthLayout from '@/layouts/AuthLayout.tsx';
 import NotFound from '@/pages/NotFound.tsx';
 import Login from '@/widgets/Auth/Login.tsx';
 import Register from '@/widgets/Auth/Register.tsx';
-
-
+import Header from '@/widgets/Header/Header';
+import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
+import { Sidebar } from '@/widgets/Sidebar/Sidebar.tsx';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    console.log(account);
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
