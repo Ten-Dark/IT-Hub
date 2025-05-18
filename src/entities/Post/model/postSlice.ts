@@ -4,32 +4,36 @@ import { Post, PostState } from '@/entities/Post/model/types.ts';
 const initialState: PostState = {
   posts: [
     {
-      id: 1,
       title: 'title',
       description:
         "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
       image: 'https://placehold.co/180x180/png',
+      category: 'Инновации и технологии',
+      tags: [],
     },
     {
-      id: 2,
       title: 'title',
       description:
         "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
       image: 'https://placehold.co/180x180/png',
+      category: 'IT-решения',
+      tags: [],
     },
     {
-      id: 3,
       title: 'title',
       description:
         "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
       image: 'https://placehold.co/180x180/png',
+      category: 'Инновации и технологии',
+      tags: [],
     },
     {
-      id: 4,
       title: 'title',
       description:
         "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
       image: 'https://placehold.co/180x180/png',
+      category: 'Кейсы',
+      tags: [],
     },
   ],
   currentPost: null,
@@ -39,7 +43,11 @@ const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    setPost(state, action: PayloadAction<Post>) {
+    addPost: (state, action: PayloadAction<Post>) => {
+      state.posts.push(action.payload);
+      state.currentPost = action.payload;
+    },
+    setPost: (state, action: PayloadAction<Post>) => {
       state.currentPost = action.payload;
     },
     clearPost(state) {
@@ -48,5 +56,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { setPost, clearPost } = postSlice.actions;
+export const { addPost, clearPost } = postSlice.actions;
 export const postReducer = postSlice.reducer;

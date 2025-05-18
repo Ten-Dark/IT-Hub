@@ -3,15 +3,21 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '@/shared/config/theme/GlobalStyles.ts';
 import { theme } from '@/shared/config/theme/theme.ts';
 import * as S from './App.styled.ts';
-import { Route, Routes } from 'react-router-dom';
+import NotFound from '@/pages/NotFound.tsx';
 import Profile from '@/pages/Profile.tsx';
 import MainLayout from '@/layouts/MainLayout.tsx';
 import AuthLayout from '@/layouts/AuthLayout.tsx';
-import NotFound from '@/pages/NotFound.tsx';
 import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
+import { PostAddForm } from '@/widgets/PostAdd/ui/PostAddForm.tsx';
+import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 
 function App() {
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  const openPostAddForm = () => {
+    modalRef.current?.showModal();
+  };
   useEffect(() => {
     console.log(account);
   }, []);
@@ -23,6 +29,9 @@ function App() {
           {/* Общий лэйаут */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<PostList />} />
+            <S.PostAddDialog ref={modalRef}>
+              <PostAddForm onClose={() => modalRef.current?.close()} />
+            </S.PostAddDialog>
           </Route>
 
           {/* Auth-лэйаут */}

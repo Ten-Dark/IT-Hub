@@ -5,4 +5,4 @@ const client = new Client()
   .setProject(import.meta.env.VITE_APP_PROJECT_ID || '');
 
 export const account = new Account(client);
-export const db = new Databases(client)
+export const db = new Databases(client);

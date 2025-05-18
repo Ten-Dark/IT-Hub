@@ -12,11 +12,10 @@ export const PostList = () => {
   return (
     <S.PostContainer>
       {selector.posts.map((post) => (
-        <S.PostItem key={post.id}>
+        <S.PostItem key={crypto.randomUUID()}>
           <img src={post.image} alt={post.title} />
           <S.PostBody>
             <S.PostInfo>
-
               <S.PostAuthor>
                 <img src="https://i.pravatar.cc/150" alt="avatar" />
                 <S.PostAuthorInfo>
@@ -29,10 +28,9 @@ export const PostList = () => {
                 <S.PostTitle>{post.title}</S.PostTitle>
                 <S.PostDescription>{post.description}</S.PostDescription>
               </S.PostContentInfo>
-
             </S.PostInfo>
             <S.PostFeatures>
-              <S.PostCategory>Category</S.PostCategory>
+              <S.PostCategory>{post.category}</S.PostCategory>
               <S.postActions>
                 <MdFavoriteBorder size={24} />
                 <LiaComments size={24} />

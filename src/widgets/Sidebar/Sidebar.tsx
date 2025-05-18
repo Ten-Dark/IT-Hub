@@ -1,12 +1,17 @@
 import * as S from './Sidebar.styled.ts';
+import * as React from 'react';
 
-export const Sidebar = () => {
+interface Props {
+  openPostAddForm: () => void;
+}
+
+export const Sidebar: React.FC<Props> = ({ openPostAddForm }) => {
   return (
     <S.SidebarContainer>
-      <S.PostAdd>
+      <S.PostAddButton onClick={openPostAddForm}>
         <S.PlusIcon />
-        <div>Добавить пост</div>
-      </S.PostAdd>
+        <span>Добавить пост</span>
+      </S.PostAddButton>
       <S.Activities>Активности</S.Activities>{' '}
     </S.SidebarContainer>
   );
