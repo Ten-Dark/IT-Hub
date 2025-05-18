@@ -8,42 +8,37 @@ import {
 import { LiaComments } from 'react-icons/lia';
 
 export const PostList = () => {
-  const selector = useAppSelector((state) => state.post);
+  const selector = useAppSelector((state) => state.posts);
   return (
     <S.PostContainer>
       {selector.posts.map((post) => (
-        <S.PostItem key={post.id}>
+        <S.PostItem key={crypto.randomUUID()}>
+          <img src={post.image} alt={post.title} />
           <S.PostBody>
-            <S.PostAuthor>
-              <img src="https://i.pravatar.cc/150" alt="avatar" />
-              <S.PostAuthorInfo>
-                <S.PostAuthorName>Author</S.PostAuthorName>
-                <S.PostAuthorDate>Date</S.PostAuthorDate>
-              </S.PostAuthorInfo>
-            </S.PostAuthor>
             <S.PostInfo>
-              <S.PostTitle>{post.title}</S.PostTitle>
-              <S.PostDescription>{post.description}</S.PostDescription>
+              <S.PostAuthor>
+                <img src="https://i.pravatar.cc/150" alt="avatar" />
+                <S.PostAuthorInfo>
+                  <S.PostAuthorName>Author</S.PostAuthorName>
+                  <S.PostAuthorDate>Date</S.PostAuthorDate>
+                </S.PostAuthorInfo>
+              </S.PostAuthor>
+
+              <S.PostContentInfo>
+                <S.PostTitle>{post.title}</S.PostTitle>
+                <S.PostDescription>{post.description}</S.PostDescription>
+              </S.PostContentInfo>
             </S.PostInfo>
             <S.PostFeatures>
-              <p>Category</p>
+              <S.PostCategory>{post.category}</S.PostCategory>
               <S.postActions>
-                <p>
-                  <MdFavoriteBorder size={24} />
-                </p>
-                <p>
-                  <LiaComments size={24} />
-                </p>
-                <p>
-                  <MdOutlineBookmarks size={24} />
-                </p>
-                <p>
-                  <MdOutlineShare size={24} />
-                </p>
+                <MdFavoriteBorder size={24} />
+                <LiaComments size={24} />
+                <MdOutlineBookmarks size={24} />
+                <MdOutlineShare size={24} />
               </S.postActions>
             </S.PostFeatures>
           </S.PostBody>
-          <img src={post.image} alt={post.title} />
         </S.PostItem>
       ))}
     </S.PostContainer>
