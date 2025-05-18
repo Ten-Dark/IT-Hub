@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 
-export const CategorySelectContainer = styled.div`
+export const CategorySelectContainer = styled.div<{ $isOpen: boolean }>`
   position: relative;
   width: 200px;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: ${({ $isOpen }) => ($isOpen ? '150px' : '0')};
 `;
 export const Display = styled.div`
   padding: 0.5rem 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   background: #fff;
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
   align-items: center;
   cursor: pointer;
+  width: max-content;
 `;
 
 export const Arrow = styled.span`
@@ -24,7 +26,7 @@ export const Arrow = styled.span`
   pointer-events: none;
 `;
 
-export const Options = styled.ul`
+export const Options = styled.ul<{ $isOpen: boolean }>`
   position: absolute;
   top: 100%;
   left: 0;
@@ -35,8 +37,9 @@ export const Options = styled.ul`
   border: 1px solid #ccc;
   border-radius: 4px;
   background: #fff;
-  max-height: 200px;
+  max-height: ${({ $isOpen }) => ($isOpen ? '150px' : '0')};
   overflow-y: auto;
+  transition: max-height 0.3s ease;
   z-index: 1000;
 `;
 
@@ -45,6 +48,7 @@ export const Item = styled.li<{ 'aria-selected'?: boolean }>`
   background: ${({ 'aria-selected': sel }) => (sel ? '#eef' : 'transparent')};
   cursor: pointer;
   border-radius: 4px;
+
   &:hover {
     background: #f0f0f0;
   }

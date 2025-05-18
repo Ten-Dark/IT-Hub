@@ -1,10 +1,11 @@
+import { Tag } from '@/entities/Tags/model/types.ts';
+
 export interface Post {
-  id: number;
   title: string;
   description: string;
   image?: string;
   category: string;
-  tags: string[];
+  tags: Tag[];
   // created_at: string;
 }
 

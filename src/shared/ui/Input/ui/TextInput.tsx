@@ -2,7 +2,7 @@ import * as S from '../styles.ts';
 import * as React from 'react';
 
 interface InputProps
-  extends Omit<React.HTMLAttributes<HTMLInputElement>, 'children'> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'children'> {
   placeholder?: string;
   label?: string;
   mode?: 'input' | 'textarea';

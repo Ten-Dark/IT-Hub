@@ -6,10 +6,15 @@ import * as S from './App.styled.ts';
 import Header from '@/widgets/Header/Header';
 import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
 import { Sidebar } from '@/widgets/Sidebar/Sidebar.tsx';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { PostAddForm } from '@/widgets/PostAdd/ui/PostAddForm.tsx';
 
 function App() {
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  const openPostAddForm = () => {
+    modalRef.current?.showModal();
+  };
   useEffect(() => {
     console.log(account);
   }, []);
@@ -20,9 +25,11 @@ function App() {
         <Header />
         <S.Content>
           <PostList />
-          <Sidebar />
+          <Sidebar openPostAddForm={openPostAddForm} />
         </S.Content>
-        <PostAddForm />
+        <S.PostAddDialog ref={modalRef}>
+          <PostAddForm onClose={() => modalRef.current?.close()} />
+        </S.PostAddDialog>
       </S.AppContainer>
     </ThemeProvider>
   );

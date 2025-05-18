@@ -7,6 +7,7 @@ export const PostAddForm = styled.form`
   gap: 0 30px;
   max-width: 790px;
   width: 100%;
+  height: auto;
 `;
 
 export const PostAddContainer = styled.div`
@@ -15,6 +16,7 @@ export const PostAddContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: auto;
   gap: 16px 0;
 `;
 
@@ -34,6 +36,7 @@ export const PostAddOptions = styled.div`
   align-items: start;
   gap: 6px 0;
   width: 100%;
+  height: max-content;
 `;
 
 export const PostAddControls = styled.div`

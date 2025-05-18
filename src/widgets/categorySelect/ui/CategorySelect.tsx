@@ -28,6 +28,7 @@ export const CategorySelect: React.FC<CategorySelectProps> = ({
 
   return (
     <S.CategorySelectContainer
+      $isOpen={isOpen}
       ref={wrapperRef}
       role="combobox"
       aria-expanded={isOpen}
@@ -40,9 +41,9 @@ export const CategorySelect: React.FC<CategorySelectProps> = ({
       }}
     >
       <S.Display onClick={() => setIsOpen((option) => !option)}>
-        {selectedLabel || 'Select...'} <S.Arrow />
+        {selectedLabel || 'Выберите категорию'} <S.Arrow />
         {isOpen && options.length > 0 && (
-          <S.Options role="listbox" id="dropdown-list">
+          <S.Options role="listbox" id="dropdown-list" $isOpen={isOpen}>
             {options.map((option, idx) => (
               <S.Item
                 key={idx}

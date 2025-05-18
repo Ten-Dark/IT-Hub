@@ -5,56 +5,67 @@ import { TagsSelect } from '@/widgets/tagsSelect/ui/TagsSelect.tsx';
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
 import { Post } from '@/entities/Post/model/types.ts';
+import { Tag } from '@/entities/Tags/model/types.ts';
+import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
+import { addPost } from '@/entities/Post/model/postSlice.ts';
+import { store } from '@/app/store';
 
-export const PostAddForm: React.FC = () => {
-  const handleSubmit = (event: FormEvent): void => {
-    event.preventDefault();
-    console.log(formValues);
-  };
+interface Props {
+  onClose: () => void;
+}
 
-  const [selectedCategory, setSelectedCategory] =
-    useState<string>('Category 1');
-
-  const [formValues, setFormValues] = useState<Post>({
-    id: 1,
+export const PostAddForm: React.FC<Props> = ({ onClose }) => {
+  const [formValues, setFormValues] = useState<Omit<Post, 'id'>>({
     title: '',
     description: '',
-    image: '',
-    category: selectedCategory,
-    tags: [],
+    image: 'https://placehold.co/180x180/png',
+    category: '',
+    tags: [] as Tag[],
   });
+  const dispatch = useAppDispatch();
 
   const categories = [
-    {
-      id: 1,
-      label: 'Category 1',
-      value: 'Category 1',
-    },
-    {
-      id: 2,
-      label: 'Category 2',
-      value: 'Category 2',
-    },
+    { id: 1, label: 'Инновации и технологии', value: 'Инновации и технологии' },
+    { id: 2, label: 'IT-решения', value: 'IT-решения' },
     {
       id: 3,
-      label: 'Category 3',
-      value: 'Category 3',
+      label: 'Информационная безопасность',
+      value: 'Информационная безопасность',
     },
-    {
-      id: 4,
-      label: 'Category 4',
-      value: 'Category 4',
-    },
+    { id: 4, label: 'Кейсы', value: 'Кейсы' },
   ];
 
   const handleCategoryChange = (newCategory: string) => {
-    setSelectedCategory(newCategory);
+    setFormValues((vals) => ({ ...vals, category: newCategory }));
+  };
+
+  const handleTagsChange = (tagValue: Tag[]) => {
+    setFormValues((vals) => ({ ...vals, tags: tagValue }));
+  };
+
+  const handleSubmit = (event: FormEvent): void => {
+    event.preventDefault();
+    dispatch(addPost({ ...formValues }));
+    console.log('Now in store:', store.getState().posts.posts);
+    onClose();
   };
 
   return (
-    <S.PostAddForm onSubmit={handleSubmit}>
+    <S.PostAddForm onSubmit={handleSubmit} method="dialog">
       <S.PostAddContainer>
         <S.PostAddBody>
+          <TextInput
+            placeholder="Изображение..."
+            size={16}
+            type={'url'}
+            disabled={true}
+            onChange={(e) =>
+              setFormValues((value) => ({
+                ...value,
+                image: e.target.value,
+              }))
+            }
+          />
           <TextInput
             placeholder="Заголовок..."
             size={18}
@@ -80,10 +91,10 @@ export const PostAddForm: React.FC = () => {
         <S.PostAddOptions>
           <CategorySelect
             options={categories}
-            value={selectedCategory}
+            value={formValues.category}
             onChange={handleCategoryChange}
           />
-          <TagsSelect setFormValues={setFormValues} />
+          <TagsSelect tags={formValues.tags} onChange={handleTagsChange} />
         </S.PostAddOptions>
       </S.PostAddContainer>
       <S.PostAddControls>
