@@ -42,6 +42,7 @@ export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
         ))}
       </div>
       <TextInput
+        disabled={true}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}

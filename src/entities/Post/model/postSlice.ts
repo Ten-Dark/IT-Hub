@@ -1,41 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Post, PostState } from '@/entities/Post/model/types.ts';
+import { postApi } from '@/entities/Post/api/PostApi.ts';
 
 const initialState: PostState = {
-  posts: [
-    {
-      title: 'title',
-      description:
-        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
-      image: 'https://placehold.co/180x180/png',
-      category: 'Инновации и технологии',
-      tags: [],
-    },
-    {
-      title: 'title',
-      description:
-        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
-      image: 'https://placehold.co/180x180/png',
-      category: 'IT-решения',
-      tags: [],
-    },
-    {
-      title: 'title',
-      description:
-        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
-      image: 'https://placehold.co/180x180/png',
-      category: 'Инновации и технологии',
-      tags: [],
-    },
-    {
-      title: 'title',
-      description:
-        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
-      image: 'https://placehold.co/180x180/png',
-      category: 'Кейсы',
-      tags: [],
-    },
-  ],
+  posts: [],
   currentPost: null,
 };
 
@@ -53,6 +21,14 @@ const postSlice = createSlice({
     clearPost(state) {
       state.currentPost = null;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      postApi.endpoints.getPosts.matchFulfilled,
+      (state, { payload }) => {
+        state.posts = payload;
+      },
+    );
   },
 });
 

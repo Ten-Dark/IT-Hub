@@ -1,4 +1,3 @@
-import { useAppSelector } from '@/shared/lib/hooks/redux.ts';
 import * as S from './PostList.styled.ts';
 import {
   MdFavoriteBorder,
@@ -6,12 +5,24 @@ import {
   MdOutlineShare,
 } from 'react-icons/md';
 import { LiaComments } from 'react-icons/lia';
+import { useGetPostsQuery } from '@/entities/Post/api/PostApi.ts';
+import { useEffect } from 'react';
 
 export const PostList = () => {
-  const selector = useAppSelector((state) => state.posts);
+  const { data: posts, error, isLoading } = useGetPostsQuery();
+  useEffect(() => {
+    console.log('ERROR OBJECT:', error);
+    if ('status' in (error || {})) {
+      // @ts-ignore
+      console.error('Error status:', error.status, 'message:', error.error);
+    }
+  }, [error]);
+
+
+  if (isLoading) return <div>Loading...</div>;
   return (
     <S.PostContainer>
-      {selector.posts.map((post) => (
+      {posts?.map((post) => (
         <S.PostItem key={crypto.randomUUID()}>
           <img src={post.image} alt={post.title} />
           <S.PostBody>

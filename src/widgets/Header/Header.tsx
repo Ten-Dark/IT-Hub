@@ -46,19 +46,25 @@ const Header = () => {
             </S.P>
             <S.P>{date.toLocaleTimeString()}</S.P>
           </div>
-          <NavLink end to='/' ><S.Logo $active={active}>IT-HUB</S.Logo></NavLink>
+          <NavLink end to="/">
+            <S.Logo $active={active}>IT-HUB</S.Logo>
+          </NavLink>
           <S.Div>
             <S.Search $active={active}>
               <IoSearch onClick={() => setActive(!active)} />
               <S.Input ref={inputRef} $active={active} />
             </S.Search>
             <S.Personal>
-              {isAuth ?
-              <NavLink end to='/profile' ><Auth /></NavLink>
-              :
-              <NavLink end to='/auth/login' ><Auth /></NavLink>
-              }
-              </S.Personal>
+              {isAuth ? (
+                <NavLink end to="/profile">
+                  <Auth />
+                </NavLink>
+              ) : (
+                <NavLink end to="/auth/login">
+                  <Auth />
+                </NavLink>
+              )}
+            </S.Personal>
           </S.Div>
         </S.Div>
         <S.Ul>

@@ -13,19 +13,17 @@ export const MainLayout: React.FC = () => {
   };
 
   return (
-      <>
-        <Header />
-        <div style={{ padding: '1rem' }}>
-          <S.Content>
-            <Outlet /> {/* Здесь будут рендериться PostList и т.д. */}
-            <Sidebar openPostAddForm={openPostAddForm}/>
-            <S.PostAddDialog ref={modalRef}>
-              <PostAddForm onClose={() => modalRef.current?.close()} />
-            </S.PostAddDialog>
-          </S.Content>
-        </div>
-      </>
+    <>
+      <Header />
+      <div style={{ padding: '1rem' }}>
+        <S.Content>
+          <Outlet /> {/* Здесь будут рендериться PostList и т.д. */}
+          <Sidebar openPostAddForm={openPostAddForm} />
+          <S.PostAddDialog ref={modalRef}>
+            <PostAddForm onClose={() => modalRef.current?.close()} />
+          </S.PostAddDialog>
+        </S.Content>
+      </div>
+    </>
   );
 };
-
-

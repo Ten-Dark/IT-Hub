@@ -8,7 +8,7 @@ import { Post } from '@/entities/Post/model/types.ts';
 import { Tag } from '@/entities/Tags/model/types.ts';
 import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
 import { addPost } from '@/entities/Post/model/postSlice.ts';
-import { store } from '@/app/store';
+import { PostService } from '@/entities/Post/api/PostService.ts';
 
 interface Props {
   onClose: () => void;
@@ -43,10 +43,10 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
     setFormValues((vals) => ({ ...vals, tags: tagValue }));
   };
 
-  const handleSubmit = (event: FormEvent): void => {
+  const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     dispatch(addPost({ ...formValues }));
-    console.log('Now in store:', store.getState().posts.posts);
+    await PostService.create(formValues)
     onClose();
   };
 

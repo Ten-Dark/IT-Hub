@@ -1,11 +1,5 @@
 import React from 'react';
 
-const Auth = () => {
-    return (
-        <div>
-            THIS AUTH PAGE
-        </div>
-    );
+const Auth: React.FC = () => {
+  return <div>THIS AUTH PAGE</div>;
 };
-
-export default Auth;

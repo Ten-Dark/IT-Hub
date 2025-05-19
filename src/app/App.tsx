@@ -3,15 +3,15 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '@/shared/config/theme/GlobalStyles.ts';
 import { theme } from '@/shared/config/theme/theme.ts';
 import * as S from './App.styled.ts';
-import NotFound from '@/pages/NotFound.tsx';
-import Profile from '@/pages/Profile.tsx';
-import AuthLayout from '@/layouts/AuthLayout.tsx';
+import { NotFound } from '@/pages/NotFound.tsx';
+import { Profile } from '@/pages/Profile.tsx';
+import { AuthLayout } from '@/layouts/AuthLayout.tsx';
 import { MainLayout } from '@/layouts/MainLayout.tsx';
 import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 
-function App() {
+export const App = () => {
   useEffect(() => {
     console.log(account);
   }, []);
@@ -33,6 +33,4 @@ function App() {
       </S.AppContainer>
     </ThemeProvider>
   );
-}
-
-export default App;
+};

@@ -20,7 +20,7 @@ export const Ul = styled.ul`
   display: flex;
   justify-content: space-evenly;
   // max-width: 70%
-  padding: 10px 130px
+  padding: 10px 130px;
 `;
 
 export const Li = styled.li<{ $active?: boolean }>`
