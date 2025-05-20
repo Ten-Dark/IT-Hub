@@ -7,17 +7,14 @@ export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && inputValue.trim()) {
-      onChange([
-        ...tags,
-        { id: window.crypto.randomUUID(), value: inputValue.trim() },
-      ]);
+      onChange([...tags, inputValue.trim()]);
       setInputValue('');
       e.preventDefault();
     }
   };
 
-  const removeTag = (id: string) => {
-    onChange(tags.filter((tag) => tag.id !== id));
+  const removeTag = (idx: number) => {
+    onChange(tags.filter((_, id) => id !== idx));
   };
   return (
     <>
@@ -31,13 +28,13 @@ export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
           fontSize: 14,
         }}
       >
-        {tags?.map((tag) => (
+        {tags?.map((tag, idx) => (
           <span
-            key={tag.id}
+            key={idx}
             style={{ background: '#eef', padding: '2px 6px', borderRadius: 4 }}
-            onClick={() => removeTag(tag.id)}
+            onClick={() => removeTag(idx)}
           >
-            {tag.value}
+            {tag}
           </span>
         ))}
       </div>

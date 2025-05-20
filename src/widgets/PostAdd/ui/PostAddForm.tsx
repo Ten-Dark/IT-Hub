@@ -5,10 +5,9 @@ import { TagsSelect } from '@/widgets/tagsSelect/ui/TagsSelect.tsx';
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
 import { Post } from '@/entities/Post/model/types.ts';
-import { Tag } from '@/entities/Tags/model/types.ts';
 import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
-import { addPost } from '@/entities/Post/model/postSlice.ts';
-import { store } from '@/app/store';
+import { createPost } from '@/entities/Post/model/postThunks.ts';
+import { Tag } from '@/entities/Tags/model/types.ts';
 
 interface Props {
   onClose: () => void;
@@ -43,10 +42,9 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
     setFormValues((vals) => ({ ...vals, tags: tagValue }));
   };
 
-  const handleSubmit = (event: FormEvent): void => {
+  const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
-    dispatch(addPost({ ...formValues }));
-    console.log('Now in store:', store.getState().posts.posts);
+    dispatch(createPost(formValues));
     onClose();
   };
 
@@ -98,8 +96,10 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
         </S.PostAddOptions>
       </S.PostAddContainer>
       <S.PostAddControls>
-        <S.PostAddAcceptButton>Принять</S.PostAddAcceptButton>
-        <S.PostAddCancelButton>Отменить</S.PostAddCancelButton>
+        <S.PostAddAcceptButton type={'submit'}>Принять</S.PostAddAcceptButton>
+        <S.PostAddCancelButton type={'button'} onClick={onClose}>
+          Отменить
+        </S.PostAddCancelButton>
       </S.PostAddControls>
     </S.PostAddForm>
   );
