@@ -5,9 +5,9 @@ import { TagsSelect } from '@/widgets/tagsSelect/ui/TagsSelect.tsx';
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
 import { Post } from '@/entities/Post/model/types.ts';
-import { Tag } from '@/entities/Tags/model/types.ts';
 import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
 import { createPost } from '@/entities/Post/model/postThunks.ts';
+import { Tag } from '@/entities/Tags/model/types.ts';
 
 interface Props {
   onClose: () => void;

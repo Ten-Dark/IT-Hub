@@ -1,5 +1,5 @@
-import { Tag } from '@/entities/Tags/model/types.ts';
 import { Models } from 'appwrite';
+import { Tag } from '@/entities/Tags/model/types.ts';
 
 export interface Post {
   title: string;

@@ -6,18 +6,11 @@ import {
 } from 'react-icons/md';
 import { LiaComments } from 'react-icons/lia';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux.ts';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { fetchPosts } from '@/entities/Post/model/postThunks.ts';
+import { Post } from '@/entities/Post/model/types.ts';
 
-export const PostList = () => {
-  // const { data: posts, error, isLoading } = useGetPostsQuery();
-  // useEffect(() => {
-  //   console.log('ERROR OBJECT:', error);
-  //   if ('status' in (error || {})) {
-  //     console.error('Error status:', error?.status, 'message:', error?.error);
-  //   }
-  // }, [error]);
-
+export const PostList: React.FC<Post> = () => {
   const dispatch = useAppDispatch();
   const { posts, isLoading, error } = useAppSelector((state) => state.posts);
 
@@ -31,7 +24,7 @@ export const PostList = () => {
     <S.PostContainer>
       {posts?.map((post) => (
         <S.PostItem key={crypto.randomUUID()}>
-          <img src={post.image} alt={post.title} />
+          <S.PostImage src={post.image} alt={post.title} />
           <S.PostBody>
             <S.PostInfo>
               <S.PostAuthor>
@@ -47,15 +40,22 @@ export const PostList = () => {
                 <S.PostDescription>{post.description}</S.PostDescription>
               </S.PostContentInfo>
             </S.PostInfo>
-            <S.PostFeatures>
-              <S.PostCategory>{post.category}</S.PostCategory>
-              <S.postActions>
-                <MdFavoriteBorder size={24} />
-                <LiaComments size={24} />
-                <MdOutlineBookmarks size={24} />
-                <MdOutlineShare size={24} />
-              </S.postActions>
-            </S.PostFeatures>
+            <S.PostOptions>
+              <S.PostTags>
+                {post.tags.map((tag) => (
+                  <S.PostTag key={tag}>{tag}</S.PostTag>
+                ))}
+              </S.PostTags>
+              <S.PostFeatures>
+                <S.PostCategory>{post.category}</S.PostCategory>
+                <S.postActions>
+                  <MdFavoriteBorder size={24} />
+                  <LiaComments size={24} />
+                  <MdOutlineBookmarks size={24} />
+                  <MdOutlineShare size={24} />
+                </S.postActions>
+              </S.PostFeatures>
+            </S.PostOptions>
           </S.PostBody>
         </S.PostItem>
       ))}
