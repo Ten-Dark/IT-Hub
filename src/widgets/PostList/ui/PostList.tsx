@@ -17,11 +17,12 @@ export const PostList: React.FC<Post> = () => {
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
 
   return (
     <S.PostContainer>
+      {isLoading && <S.SysMessage>Loading...</S.SysMessage>}
+      {error && <S.SysMessage>{error}</S.SysMessage>}
+
       {posts?.map((post) => (
         <S.PostItem key={crypto.randomUUID()}>
           <S.PostImage src={post.image} alt={post.title} />

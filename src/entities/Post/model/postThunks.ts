@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Post, PostDocument } from '@/entities/Post/model/types.ts';
+import { Post } from '@/entities/Post/model/types.ts';
 import { PostService } from '@/entities/Post/api/PostService.ts';
 
 export const fetchPosts = createAsyncThunk<Post[]>(
@@ -14,8 +14,9 @@ export const fetchPosts = createAsyncThunk<Post[]>(
         category: doc.category,
         tags: doc.tags,
       }));
-    } catch (error: any) {
-      return rejectWithValue(error.message || 'Fetch failed');
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      return rejectWithValue(message);
     }
   },
 );
@@ -35,9 +36,10 @@ export const createPost = createAsyncThunk<
       tags: doc.tags,
     };
     return post;
-  } catch (error: any) {
-    return rejectWithValue(error.message || ' Create failed');
-  }
+  } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      return rejectWithValue(message);
+    }
 });
 
 export const updatePost = createAsyncThunk<
@@ -46,7 +48,7 @@ export const updatePost = createAsyncThunk<
   { rejectValue: string }
 >('posts/update', async ({ id, data }, { rejectWithValue }) => {
   try {
-    const updated = await PostService.update(id, data as any);
+    const updated = await PostService.update(id, data);
     return {
       title: updated.title,
       description: updated.description,
@@ -54,9 +56,10 @@ export const updatePost = createAsyncThunk<
       category: updated.category,
       tags: updated.tags,
     };
-  } catch (error: any) {
-    return rejectWithValue(error.message || 'Update failed');
-  }
+  } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      return rejectWithValue(message);
+    }
 });
 
 export const deleteById = createAsyncThunk<
@@ -67,7 +70,8 @@ export const deleteById = createAsyncThunk<
   try {
     await PostService.delete(id);
     return `Deleted: + ${id}`;
-  } catch (error: any) {
-    return rejectWithValue(error.message || 'Delete failed');
-  }
+  } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      return rejectWithValue(message);
+    }
 });

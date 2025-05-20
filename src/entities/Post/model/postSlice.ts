@@ -68,7 +68,7 @@ const postSlice = createSlice({
 
     builder
       .addCase(deleteById.fulfilled, (state, { payload: id }) => {
-        state.posts = state.posts.filter((p) => /* p.id === id */ true);
+        state.posts = state.posts.filter((p) => true);
       })
       .addCase(deleteById.rejected, (state, { payload }) => {
         state.error = payload || 'Delete failed';
