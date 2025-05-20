@@ -7,8 +7,7 @@ import { FormEvent, useState } from 'react';
 import { Post } from '@/entities/Post/model/types.ts';
 import { Tag } from '@/entities/Tags/model/types.ts';
 import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
-import { addPost } from '@/entities/Post/model/postSlice.ts';
-import { PostService } from '@/entities/Post/api/PostService.ts';
+import { createPost } from '@/entities/Post/model/postThunks.ts';
 
 interface Props {
   onClose: () => void;
@@ -45,8 +44,7 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
 
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
-    dispatch(addPost({ ...formValues }));
-    await PostService.create(formValues)
+    dispatch(createPost(formValues));
     onClose();
   };
 
@@ -98,8 +96,10 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
         </S.PostAddOptions>
       </S.PostAddContainer>
       <S.PostAddControls>
-        <S.PostAddAcceptButton>Принять</S.PostAddAcceptButton>
-        <S.PostAddCancelButton>Отменить</S.PostAddCancelButton>
+        <S.PostAddAcceptButton type={'submit'}>Принять</S.PostAddAcceptButton>
+        <S.PostAddCancelButton type={'button'} onClick={onClose}>
+          Отменить
+        </S.PostAddCancelButton>
       </S.PostAddControls>
     </S.PostAddForm>
   );

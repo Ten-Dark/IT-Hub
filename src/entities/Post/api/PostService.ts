@@ -1,5 +1,5 @@
 import { AppwriteDocument, PostDocument } from '@/entities/Post/model/types.ts';
-import { collections } from '@/entities/Post/api/PostClient.ts';
+import { collections } from '@/entities/Post/api/PostMethods.ts';
 
 export const PostService = {
   create: (payload: Omit<PostDocument, keyof AppwriteDocument>) =>

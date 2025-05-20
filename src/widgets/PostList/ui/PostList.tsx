@@ -5,21 +5,28 @@ import {
   MdOutlineShare,
 } from 'react-icons/md';
 import { LiaComments } from 'react-icons/lia';
-import { useGetPostsQuery } from '@/entities/Post/api/PostApi.ts';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux.ts';
 import { useEffect } from 'react';
+import { fetchPosts } from '@/entities/Post/model/postThunks.ts';
 
 export const PostList = () => {
-  const { data: posts, error, isLoading } = useGetPostsQuery();
+  // const { data: posts, error, isLoading } = useGetPostsQuery();
+  // useEffect(() => {
+  //   console.log('ERROR OBJECT:', error);
+  //   if ('status' in (error || {})) {
+  //     console.error('Error status:', error?.status, 'message:', error?.error);
+  //   }
+  // }, [error]);
+
+  const dispatch = useAppDispatch();
+  const { posts, isLoading, error } = useAppSelector((state) => state.posts);
+
   useEffect(() => {
-    console.log('ERROR OBJECT:', error);
-    if ('status' in (error || {})) {
-      // @ts-ignore
-      console.error('Error status:', error.status, 'message:', error.error);
-    }
-  }, [error]);
-
-
+    dispatch(fetchPosts());
+  }, [dispatch]);
   if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
     <S.PostContainer>
       {posts?.map((post) => (

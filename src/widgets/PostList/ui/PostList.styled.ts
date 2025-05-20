@@ -78,6 +78,10 @@ export const PostTitle = styled.h2`
   color: ${({ theme }) => theme.colors.primary};
 `;
 export const PostDescription = styled.p`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: start;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
