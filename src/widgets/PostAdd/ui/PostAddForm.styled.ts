@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form } from 'formik';
 
-export const PostAddForm = styled.form`
+export const PostAddForm = styled(Form)`
   display: flex;
   justify-content: center;
   align-items: start;
@@ -34,12 +35,12 @@ export const PostAddOptions = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  gap: 6px 0;
+  gap: 2px 0;
   width: 100%;
-  height: max-content;
+  height: fit-content;
 `;
 
-export const PostAddControls = styled.div`
+export const PostAddButtons = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,7 +49,6 @@ export const PostAddControls = styled.div`
 `;
 
 export const PostAddAcceptButton = styled.button`
-  border: 2px solid #404040;
   color: #404040;
   font-weight: 700;
   border-radius: 4px;
@@ -56,9 +56,9 @@ export const PostAddAcceptButton = styled.button`
   min-width: 128px;
   width: 100%;
   cursor: pointer;
+  border: 1px solid #404040;
 `;
 export const PostAddCancelButton = styled.button`
-  border: 1px solid #f87066;
   background-color: #f87066;
   color: #fff;
   font-weight: 700;
@@ -67,4 +67,5 @@ export const PostAddCancelButton = styled.button`
   min-width: 128px;
   width: 100%;
   cursor: pointer;
+  border: 1px solid #f87066;
 `;

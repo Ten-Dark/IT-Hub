@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 export const SysMessage = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-    width: 100%;
-    height: 100%;
-    padding: 40px 0;
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  padding: 40px 0;
+`;
 
 export const PostContainer = styled.div`
   width: 57rem;
@@ -22,8 +22,8 @@ export const PostContainer = styled.div`
 `;
 
 export const PostImage = styled.img`
-  min-height: 200px;
-  height: 100%;
+  height: 200px;
+  width: 200px;
 `;
 
 export const PostItem = styled.div`
@@ -53,12 +53,13 @@ export const PostInfo = styled.div`
   width: 100%;
   gap: 4px 0;
 `;
+
 export const PostOptions = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 12px 0;
+  gap: 8px 0;
 `;
 
 export const PostAuthor = styled.div`
@@ -96,18 +97,21 @@ export const PostContentInfo = styled.div`
   gap: 2px 0;
 `;
 export const PostTitle = styled.h2`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
   font-size: 20px;
   font-weight: 600;
-  line-height: 24px;
   color: ${({ theme }) => theme.colors.primary};
 `;
 export const PostDescription = styled.p`
-  display: flex;
-  align-items: start;
-  justify-content: start;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   font-size: 14px;
   font-weight: 500;
-  line-height: 20px;
   color: ${({ theme }) => theme.colors.text};
 `;
 export const PostTags = styled.div`
@@ -124,7 +128,7 @@ export const PostTag = styled.span`
   align-items: center;
   justify-content: center;
   padding: 4px 6px;
-  color: ${({ theme }) => theme.colors.background2};
+  color: ${({ theme }) => theme.colors.actionText};
   background: ${({ theme }) => theme.colors.primary};
   border-radius: 4px;
 `;
@@ -139,7 +143,7 @@ export const PostFeatures = styled.div`
   font-size: 14px;
 `;
 export const PostCategory = styled.p`
-  background-color: ${({ theme }) => theme.colors.background2};
+  background-color: ${({ theme }) => theme.colors.actionText};
   padding: 6px 8px;
   border-radius: 8px;
 `;

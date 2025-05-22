@@ -3,25 +3,30 @@ import { TextInput } from '@/shared/ui/Input/ui/TextInput.tsx';
 import { CategorySelect } from '@/widgets/categorySelect/ui/CategorySelect.tsx';
 import { TagsSelect } from '@/widgets/tagsSelect/ui/TagsSelect.tsx';
 import * as React from 'react';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { Post } from '@/entities/Post/model/types.ts';
 import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
 import { createPost } from '@/entities/Post/model/postThunks.ts';
 import { Tag } from '@/entities/Tags/model/types.ts';
+import { UploadImg } from '@/widgets/PostAdd/ui/uploadImg/UploadImg.tsx';
+import { Field, FieldProps, Formik } from 'formik';
 
 interface Props {
   onClose: () => void;
 }
 
 export const PostAddForm: React.FC<Props> = ({ onClose }) => {
-  const [formValues, setFormValues] = useState<Omit<Post, 'id'>>({
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string>('');
+  const dispatch = useAppDispatch();
+
+  const initialValues: Omit<Post, 'id'> = {
     title: '',
     description: '',
-    image: 'https://placehold.co/180x180/png',
+    image: '',
     category: '',
     tags: [] as Tag[],
-  });
-  const dispatch = useAppDispatch();
+  };
 
   const categories = [
     { id: 1, label: 'Инновации и технологии', value: 'Инновации и технологии' },
@@ -34,73 +39,70 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
     { id: 4, label: 'Кейсы', value: 'Кейсы' },
   ];
 
-  const handleCategoryChange = (newCategory: string) => {
-    setFormValues((vals) => ({ ...vals, category: newCategory }));
-  };
-
-  const handleTagsChange = (tagValue: Tag[]) => {
-    setFormValues((vals) => ({ ...vals, tags: tagValue }));
-  };
-
-  const handleSubmit = async (event: FormEvent): Promise<void> => {
-    event.preventDefault();
-    dispatch(createPost(formValues));
-    onClose();
+  const handleFileSelect = (f: File) => {
+    setFile(f);
+    const url = URL.createObjectURL(f);
+    setPreview(url);
   };
 
   return (
-    <S.PostAddForm onSubmit={handleSubmit} method="dialog">
-      <S.PostAddContainer>
-        <S.PostAddBody>
-          <TextInput
-            placeholder="Изображение..."
-            size={16}
-            type={'url'}
-            disabled={true}
-            onChange={(e) =>
-              setFormValues((value) => ({
-                ...value,
-                image: e.target.value,
-              }))
-            }
-          />
-          <TextInput
-            placeholder="Заголовок..."
-            size={18}
-            onChange={(e) =>
-              setFormValues((value) => ({
-                ...value,
-                title: e.target.value,
-              }))
-            }
-          />
-          <TextInput
-            placeholder="Описание..."
-            size={16}
-            mode={'textarea'}
-            onChange={(e) =>
-              setFormValues((value) => ({
-                ...value,
-                description: e.target.value,
-              }))
-            }
-          />
-        </S.PostAddBody>
-        <S.PostAddOptions>
-          <CategorySelect
-            options={categories}
-            value={formValues.category}
-            onChange={handleCategoryChange}
-          />
-          <TagsSelect tags={formValues.tags} onChange={handleTagsChange} />
-        </S.PostAddOptions>
-      </S.PostAddContainer>
-      <S.PostAddControls>
-        <S.PostAddAcceptButton type={'submit'}>Принять</S.PostAddAcceptButton>
-        <S.PostAddCancelButton type={'button'} onClick={onClose}>
-          Отменить
-        </S.PostAddCancelButton>
-      </S.PostAddControls>
-    </S.PostAddForm>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={(values) => {
+        dispatch(
+          createPost({
+            payload: { ...values, image: preview },
+            file: file || undefined,
+          }),
+        );
+        onClose();
+      }}
+    >
+      {({ values, setFieldValue }) => (
+        <S.PostAddForm method="dialog">
+          <S.PostAddContainer>
+            <UploadImg preview={preview} onSelect={handleFileSelect} />
+
+            <S.PostAddBody>
+              <Field name="title">
+                {({ field }: FieldProps) => (
+                  <TextInput placeholder="Заголовок..." size={18} {...field} />
+                )}
+              </Field>
+
+              <Field name="description">
+                {({ field }: FieldProps) => (
+                  <TextInput
+                    placeholder="Описание..."
+                    size={16}
+                    mode="textarea"
+                    {...field}
+                  />
+                )}
+              </Field>
+            </S.PostAddBody>
+
+            <S.PostAddOptions>
+              <CategorySelect
+                options={categories}
+                value={values.category}
+                onChange={(val) => setFieldValue('category', val)}
+              />
+              <TagsSelect
+                tags={values.tags}
+                onChange={(tags) => setFieldValue('tags', tags)}
+              />
+            </S.PostAddOptions>
+          </S.PostAddContainer>
+
+          <S.PostAddButtons>
+            <S.PostAddAcceptButton type="submit">Принять</S.PostAddAcceptButton>
+            <S.PostAddCancelButton type="button" onClick={onClose}>
+              Отменить
+            </S.PostAddCancelButton>
+          </S.PostAddButtons>
+        </S.PostAddForm>
+      )}
+    </Formik>
   );
 };

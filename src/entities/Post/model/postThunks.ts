@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Post } from '@/entities/Post/model/types.ts';
 import { PostService } from '@/entities/Post/api/PostService.ts';
+import { Post } from '@/entities/Post/model/types.ts';
 
 export const fetchPosts = createAsyncThunk<Post[]>(
   'posts/fetchAll',
@@ -23,11 +23,11 @@ export const fetchPosts = createAsyncThunk<Post[]>(
 
 export const createPost = createAsyncThunk<
   Post,
-  Partial<Post>,
+  { payload: Partial<Post>; file?: File },
   { rejectValue: string }
->('posts/create', async (payload, { rejectWithValue }) => {
+>('posts/create', async ({ payload, file }, { rejectWithValue }) => {
   try {
-    const doc = await PostService.create(payload);
+    const doc = await PostService.create(payload, file);
     const post: Post = {
       title: doc.title,
       description: doc.description,
@@ -37,9 +37,9 @@ export const createPost = createAsyncThunk<
     };
     return post;
   } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error);
-      return rejectWithValue(message);
-    }
+    const message = error instanceof Error ? error.message : String(error);
+    return rejectWithValue(message);
+  }
 });
 
 export const updatePost = createAsyncThunk<
@@ -57,9 +57,9 @@ export const updatePost = createAsyncThunk<
       tags: updated.tags,
     };
   } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error);
-      return rejectWithValue(message);
-    }
+    const message = error instanceof Error ? error.message : String(error);
+    return rejectWithValue(message);
+  }
 });
 
 export const deleteById = createAsyncThunk<
@@ -71,7 +71,7 @@ export const deleteById = createAsyncThunk<
     await PostService.delete(id);
     return `Deleted: + ${id}`;
   } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error);
-      return rejectWithValue(message);
-    }
+    const message = error instanceof Error ? error.message : String(error);
+    return rejectWithValue(message);
+  }
 });
