@@ -1,4 +1,3 @@
-import { account } from '@/shared/config/appwrite';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '@/shared/config/theme/GlobalStyles.ts';
 import { theme } from '@/shared/config/theme/theme.ts';
@@ -9,13 +8,9 @@ import { AuthLayout } from '@/layouts/AuthLayout.tsx';
 import { MainLayout } from '@/layouts/MainLayout.tsx';
 import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
 import { Auth } from '@/pages/Auth.tsx';
 
 export const App = () => {
-  useEffect(() => {
-    console.log(account);
-  }, []);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

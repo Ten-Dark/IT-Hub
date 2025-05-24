@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form } from 'formik';
 
-export const PostAddForm = styled.form`
+export const PostAddForm = styled(Form)`
   display: flex;
   justify-content: center;
   align-items: start;

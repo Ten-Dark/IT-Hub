@@ -1,27 +1,33 @@
+import * as React from 'react';
 import * as S from './PostAddForm.styled.ts';
+import * as Yup from 'yup';
+import { Field, FieldProps, Formik } from 'formik';
+import { useState } from 'react';
 import { TextInput } from '@/shared/ui/Input/ui/TextInput.tsx';
+import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
 import { CategorySelect } from '@/widgets/categorySelect/ui/CategorySelect.tsx';
 import { TagsSelect } from '@/widgets/tagsSelect/ui/TagsSelect.tsx';
-import * as React from 'react';
-import { FormEvent, useState } from 'react';
-import { Post } from '@/entities/Post/model/types.ts';
-import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
 import { createPost } from '@/entities/Post/model/postThunks.ts';
+import { Post } from '@/entities/Post/model/types.ts';
 import { Tag } from '@/entities/Tags/model/types.ts';
+import { UploadImg } from '@/widgets/PostAdd/ui/uploadImg/UploadImg.tsx';
+import { PostAddControls } from './PostAddForm.styled.ts';
 
 interface Props {
   onClose: () => void;
 }
 
 export const PostAddForm: React.FC<Props> = ({ onClose }) => {
-  const [formValues, setFormValues] = useState<Omit<Post, 'id'>>({
+  const [file, setFile] = useState<File | null>(null);
+  const dispatch = useAppDispatch();
+
+  const initialValues: Omit<Post, 'id' | 'created_at'> = {
     title: '',
     description: '',
-    image: 'https://placehold.co/180x180/png',
+    image: '',
     category: '',
     tags: [] as Tag[],
-  });
-  const dispatch = useAppDispatch();
+  };
 
   const categories = [
     { id: 1, label: 'Инновации и технологии', value: 'Инновации и технологии' },
@@ -34,73 +40,120 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
     { id: 4, label: 'Кейсы', value: 'Кейсы' },
   ];
 
-  const handleCategoryChange = (newCategory: string) => {
-    setFormValues((vals) => ({ ...vals, category: newCategory }));
-  };
-
-  const handleTagsChange = (tagValue: Tag[]) => {
-    setFormValues((vals) => ({ ...vals, tags: tagValue }));
-  };
-
-  const handleSubmit = async (event: FormEvent): Promise<void> => {
-    event.preventDefault();
-    dispatch(createPost(formValues));
-    onClose();
-  };
+  const validationSchema = Yup.object({
+    image: Yup.string().required('Image'),
+    title: Yup.string().required('Title'),
+    description: Yup.string().required('Description'),
+    category: Yup.string().required('Выберите категорию'),
+    tags: Yup.array().min(1, 'Выберите хотя бы один тег'),
+  });
 
   return (
-    <S.PostAddForm onSubmit={handleSubmit} method="dialog">
-      <S.PostAddContainer>
-        <S.PostAddBody>
-          <TextInput
-            placeholder="Изображение..."
-            size={16}
-            type={'url'}
-            disabled={true}
-            onChange={(e) =>
-              setFormValues((value) => ({
-                ...value,
-                image: e.target.value,
-              }))
-            }
-          />
-          <TextInput
-            placeholder="Заголовок..."
-            size={18}
-            onChange={(e) =>
-              setFormValues((value) => ({
-                ...value,
-                title: e.target.value,
-              }))
-            }
-          />
-          <TextInput
-            placeholder="Описание..."
-            size={16}
-            mode={'textarea'}
-            onChange={(e) =>
-              setFormValues((value) => ({
-                ...value,
-                description: e.target.value,
-              }))
-            }
-          />
-        </S.PostAddBody>
-        <S.PostAddOptions>
-          <CategorySelect
-            options={categories}
-            value={formValues.category}
-            onChange={handleCategoryChange}
-          />
-          <TagsSelect tags={formValues.tags} onChange={handleTagsChange} />
-        </S.PostAddOptions>
-      </S.PostAddContainer>
-      <S.PostAddControls>
-        <S.PostAddAcceptButton type={'submit'}>Принять</S.PostAddAcceptButton>
-        <S.PostAddCancelButton type={'button'} onClick={onClose}>
-          Отменить
-        </S.PostAddCancelButton>
-      </S.PostAddControls>
-    </S.PostAddForm>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={(values) => {
+        dispatch(
+          createPost({
+            payload: values,
+            file: file || undefined
+          }),
+        );
+        onClose();
+      }}
+    >
+      {({ values, setFieldValue, errors, touched }) => {
+        const handleFileSelect = async (f: File) => {
+          setFile(f);
+          const url = URL.createObjectURL(f);
+          await setFieldValue('image', url);
+        };
+
+        return (
+          <S.PostAddForm method="dialog">
+            <S.PostAddContainer>
+              <UploadImg
+                preview={values.image || ''}
+                onSelect={handleFileSelect}
+              />
+              {errors.image && (
+                <div style={{ color: 'red', fontSize: '12px' }}>
+                  {errors.image}
+                </div>
+              )}
+
+              <S.PostAddBody>
+                <Field name="title">
+                  {({ field }: FieldProps) => (
+                    <>
+                      <TextInput
+                        placeholder="Заголовок..."
+                        size={18}
+                        {...field}
+                      />
+                      {errors.title && touched.title && (
+                        <div style={{ color: 'red', fontSize: '12px' }}>
+                          {errors.title}
+                        </div>
+                      )}
+                    </>
+                  )}
+                </Field>
+
+                <Field name="description">
+                  {({ field }: FieldProps) => (
+                    <>
+                      <TextInput
+                        placeholder="Описание..."
+                        size={16}
+                        mode="textarea"
+                        {...field}
+                      />
+                      {errors.description && touched.description && (
+                        <div style={{ color: 'red', fontSize: '12px' }}>
+                          {errors.description}
+                        </div>
+                      )}
+                    </>
+                  )}
+                </Field>
+              </S.PostAddBody>
+
+              <S.PostAddOptions>
+                <CategorySelect
+                  options={categories}
+                  value={values.category}
+                  onChange={(val) => setFieldValue('category', val)}
+                />
+                {errors.category && touched.category && (
+                  <div style={{ color: 'red', fontSize: '12px' }}>
+                    {errors.category}
+                  </div>
+                )}
+
+                <TagsSelect
+                  tags={values.tags}
+                  onChange={(tags) => setFieldValue('tags', tags)}
+                />
+                {errors.tags && touched.tags && (
+                  <div style={{ color: 'red', fontSize: '12px' }}>
+                    {errors.tags}
+                  </div>
+                )}
+              </S.PostAddOptions>
+            </S.PostAddContainer>
+
+            <S.PostAddControls>
+              <S.PostAddAcceptButton type="submit">
+                Принять
+              </S.PostAddAcceptButton>
+              <S.PostAddCancelButton type="button" onClick={onClose}>
+                Отменить
+              </S.PostAddCancelButton>
+            </S.PostAddControls>
+          </S.PostAddForm>
+        );
+      }}
+    </Formik>
   );
 };

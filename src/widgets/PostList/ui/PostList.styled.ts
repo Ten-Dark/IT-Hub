@@ -22,8 +22,8 @@ export const PostContainer = styled.div`
 `;
 
 export const PostImage = styled.img`
-  min-height: 200px;
-  height: 100%;
+  height: 200px;
+  width: 200px;
 `;
 
 export const PostItem = styled.div`

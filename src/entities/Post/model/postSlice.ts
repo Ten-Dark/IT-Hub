@@ -57,18 +57,24 @@ const postSlice = createSlice({
       });
     builder
       .addCase(updatePost.fulfilled, (state, { payload }) => {
-        const idx = state.posts.findIndex(
-          (p) => p.title === payload.title /* или по ID */,
-        );
-        if (idx !== -1) state.posts[idx] = payload;
+        const idx = state.posts.findIndex((p) => p.id === payload.id);
+        if (idx !== -1) {
+          state.posts[idx] = payload;
+        }
+        if (state.currentPost && state.currentPost.id === payload.id) {
+          state.currentPost = payload;
+        }
       })
       .addCase(updatePost.rejected, (state, { payload }) => {
         state.error = payload || 'Update failed';
       });
 
     builder
-      .addCase(deleteById.fulfilled, (state, { payload: id }) => {
-        state.posts = state.posts.filter((p) => true);
+      .addCase(deleteById.fulfilled, (state, { payload: deletedId }) => {
+        state.posts = state.posts.filter((p) => p.id !== deletedId);
+        if (state.currentPost && state.currentPost.id === deletedId) {
+          state.currentPost = null
+        }
       })
       .addCase(deleteById.rejected, (state, { payload }) => {
         state.error = payload || 'Delete failed';
