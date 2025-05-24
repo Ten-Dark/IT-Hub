@@ -8,35 +8,33 @@ const uploadImg = async (file: File): Promise<string> => {
   const fileExt = file.name.split('.').pop();
   const fileName = `${Date.now()}.${fileExt}`;
 
-  const { data, error } = await supabase
-    .storage
+  const { data, error } = await supabase.storage
     .from(BUCKET)
-    .upload(fileName, file)
+    .upload(fileName, file);
 
   if (error || !data) {
     throw new Error('Ошибка загрузки изображения: ' + error?.message);
   }
-  const { data: publicUrlData } = supabase
-    .storage
+  const { data: publicUrlData } = supabase.storage
     .from(BUCKET)
-    .getPublicUrl(data.path)
+    .getPublicUrl(data.path);
 
   if (!publicUrlData.publicUrl) {
     throw new Error('Не удалось получить URL изображения');
   }
   return publicUrlData.publicUrl;
-}
+};
 
 export const PostMethods = {
   async create(
     payload: Omit<Post, 'id' | 'created_at'>,
-    file?: File
+    file?: File,
   ): Promise<Post> {
-    const imageUrl = file ? await uploadImg(file): payload.image
+    const imageUrl = file ? await uploadImg(file) : payload.image;
 
     const { data, error } = await supabase
       .from('posts')
-      .insert({ ...payload, image: imageUrl})
+      .insert({ ...payload, image: imageUrl })
       .select()
       .single();
 
@@ -53,14 +51,17 @@ export const PostMethods = {
   async update(
     id: string,
     payload: Partial<Omit<Post, 'id' | 'created_at'>>,
-    file: File
+    file: File,
   ): Promise<Post> {
-    let imageUrl = payload.image
+    let imageUrl = payload.image;
 
     if (file) {
-      imageUrl = await uploadImg(file)
+      imageUrl = await uploadImg(file);
     }
-    const updatedPayload = { ...payload, ...file ? {image: imageUrl}: {} } as Post;
+    const updatedPayload = {
+      ...payload,
+      ...(file ? { image: imageUrl } : {}),
+    } as Post;
     if (imageUrl !== undefined) {
       updatedPayload.image = imageUrl;
     }
@@ -119,7 +120,7 @@ export const PostMethods = {
       console.error('GetAll error:', error);
       throw error;
     }
-    return data as Post[]
+    return data as Post[];
   },
 
   async getPaginated(limit: number, offset: number): Promise<Post[]> {

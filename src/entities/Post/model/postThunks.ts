@@ -30,7 +30,7 @@ export const createPost = createAsyncThunk<
 
 export const updatePost = createAsyncThunk<
   Post,
-  { id: string; payload: Partial<Omit<Post, 'id' | 'created_at'>>, file: File },
+  { id: string; payload: Partial<Omit<Post, 'id' | 'created_at'>>; file: File },
   { rejectValue: string }
 >('posts/update', async ({ id, payload, file }, { rejectWithValue }) => {
   try {

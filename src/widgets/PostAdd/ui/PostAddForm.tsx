@@ -55,7 +55,7 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
         dispatch(
           createPost({
             payload: values,
-            file: file || undefined
+            file: file || undefined,
           }),
         );
         onClose();
@@ -142,14 +142,14 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
               </S.PostAddOptions>
             </S.PostAddContainer>
 
-            <S.PostAddControls>
+            <S.PostAddButtons>
               <S.PostAddAcceptButton type="submit">
                 Принять
               </S.PostAddAcceptButton>
               <S.PostAddCancelButton type="button" onClick={onClose}>
                 Отменить
               </S.PostAddCancelButton>
-            </S.PostAddControls>
+            </S.PostAddButtons>
           </S.PostAddForm>
         );
       }}

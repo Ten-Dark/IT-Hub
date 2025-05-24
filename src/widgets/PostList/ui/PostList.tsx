@@ -8,9 +8,9 @@ import { LiaComments } from 'react-icons/lia';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux.ts';
 import React, { useEffect } from 'react';
 import { fetchPosts } from '@/entities/Post/model/postThunks.ts';
-import { Post } from '@/entities/Post/model/types.ts';
+import * as Yup from 'yup';
 
-export const PostList: React.FC<Post> = () => {
+export const PostList: React.FC = () => {
   const dispatch = useAppDispatch();
   const { posts, isLoading, error } = useAppSelector((state) => state.posts);
 

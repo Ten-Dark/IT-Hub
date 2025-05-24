@@ -73,7 +73,7 @@ const postSlice = createSlice({
       .addCase(deleteById.fulfilled, (state, { payload: deletedId }) => {
         state.posts = state.posts.filter((p) => p.id !== deletedId);
         if (state.currentPost && state.currentPost.id === deletedId) {
-          state.currentPost = null
+          state.currentPost = null;
         }
       })
       .addCase(deleteById.rejected, (state, { payload }) => {
