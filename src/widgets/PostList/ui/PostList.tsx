@@ -6,6 +6,20 @@ import {
   MdOutlineShare,
 } from 'react-icons/md';
 import { LiaComments } from 'react-icons/lia';
+<<<<<<< Updated upstream
+=======
+import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux.ts';
+import React, { useEffect } from 'react';
+import { fetchPosts } from '@/entities/Post/model/postThunks.ts';
+
+export const PostList: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { posts, isLoading, error } = useAppSelector((state) => state.posts);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
+>>>>>>> Stashed changes
 
 export const PostList = () => {
   const selector = useAppSelector((state) => state.posts);
