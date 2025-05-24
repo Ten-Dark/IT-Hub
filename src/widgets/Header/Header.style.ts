@@ -19,9 +19,8 @@ export const Ul = styled.ul`
   list-style-type: none;
   display: flex;
   justify-content: space-evenly;
-  padding-left: 130px;
-  padding-right: 130px;
   // max-width: 70%
+  padding: 10px 130px;
 `;
 
 export const Li = styled.li<{ $active?: boolean }>`
@@ -42,7 +41,7 @@ export const P = styled.p`
 export const Logo = styled.h1<{ $active?: boolean }>`
   cursor: pointer;
   font-size: 3rem;
-  margin: 0;
+  margin: 12px 0;
   margin-left: 220px;
 `;
 

@@ -1,4 +1,3 @@
-import { useAppSelector } from '@/shared/lib/hooks/redux.ts';
 import * as S from './PostList.styled.ts';
 import {
   MdFavoriteBorder,
@@ -6,28 +5,27 @@ import {
   MdOutlineShare,
 } from 'react-icons/md';
 import { LiaComments } from 'react-icons/lia';
-<<<<<<< Updated upstream
-=======
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux.ts';
 import React, { useEffect } from 'react';
 import { fetchPosts } from '@/entities/Post/model/postThunks.ts';
+import { Post } from '@/entities/Post/model/types.ts';
 
-export const PostList: React.FC = () => {
+export const PostList: React.FC<Post> = () => {
   const dispatch = useAppDispatch();
   const { posts, isLoading, error } = useAppSelector((state) => state.posts);
 
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
->>>>>>> Stashed changes
 
-export const PostList = () => {
-  const selector = useAppSelector((state) => state.posts);
   return (
     <S.PostContainer>
-      {selector.posts.map((post) => (
-        <S.PostItem key={post.id}>
-          <img src={post.image} alt={post.title} />
+      {isLoading && <S.SysMessage>Loading...</S.SysMessage>}
+      {error && <S.SysMessage>{error}</S.SysMessage>}
+
+      {posts?.map((post) => (
+        <S.PostItem key={crypto.randomUUID()}>
+          <S.PostImage src={post.image} alt={post.title} />
           <S.PostBody>
             <S.PostInfo>
               <S.PostAuthor>
@@ -37,20 +35,28 @@ export const PostList = () => {
                   <S.PostAuthorDate>Date</S.PostAuthorDate>
                 </S.PostAuthorInfo>
               </S.PostAuthor>
+
               <S.PostContentInfo>
                 <S.PostTitle>{post.title}</S.PostTitle>
                 <S.PostDescription>{post.description}</S.PostDescription>
               </S.PostContentInfo>
             </S.PostInfo>
-            <S.PostFeatures>
-              <S.PostCategory>Category</S.PostCategory>
-              <S.postActions>
-                <MdFavoriteBorder size={24} />
-                <LiaComments size={24} />
-                <MdOutlineBookmarks size={24} />
-                <MdOutlineShare size={24} />
-              </S.postActions>
-            </S.PostFeatures>
+            <S.PostOptions>
+              <S.PostTags>
+                {post.tags.map((tag) => (
+                  <S.PostTag key={tag}>{tag}</S.PostTag>
+                ))}
+              </S.PostTags>
+              <S.PostFeatures>
+                <S.PostCategory>{post.category}</S.PostCategory>
+                <S.postActions>
+                  <MdFavoriteBorder size={24} />
+                  <LiaComments size={24} />
+                  <MdOutlineBookmarks size={24} />
+                  <MdOutlineShare size={24} />
+                </S.postActions>
+              </S.PostFeatures>
+            </S.PostOptions>
           </S.PostBody>
         </S.PostItem>
       ))}

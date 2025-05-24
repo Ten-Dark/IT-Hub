@@ -1,52 +1,86 @@
+import { Post } from '@/entities/Post/model/types.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Post, PostState } from '@/entities/Post/model/types.ts';
+import {
+  createPost,
+  deleteById,
+  fetchPosts,
+  updatePost,
+} from '@/entities/Post/model/postThunks.ts';
+
+interface PostState {
+  posts: Post[];
+  currentPost: Post | null;
+  isLoading: boolean;
+  error: string | null;
+}
 
 const initialState: PostState = {
-  posts: [
-    {
-      id: 1,
-      title: 'title',
-      description:
-        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
-      image: 'https://placehold.co/180x180/png',
-    },
-    {
-      id: 2,
-      title: 'title',
-      description:
-        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
-      image: 'https://placehold.co/180x180/png',
-    },
-    {
-      id: 3,
-      title: 'title',
-      description:
-        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
-      image: 'https://placehold.co/180x180/png',
-    },
-    {
-      id: 4,
-      title: 'title',
-      description:
-        "Lorizzle i'm in the shizzle dolizzle sit fizzle, consectetuer adipiscing elit. Nullizzle shizzlin dizzle velizzle, yo volutpizzle, things quizzle, dope vizzle, arcu. Pellentesque owned the bizzle...",
-      image: 'https://placehold.co/180x180/png',
-    },
-  ],
+  posts: [],
   currentPost: null,
+  isLoading: false,
+  error: null,
 };
 
 const postSlice = createSlice({
-  name: 'post',
+  name: 'posts',
   initialState,
   reducers: {
-    setPost(state, action: PayloadAction<Post>) {
+    clearError(state) {
+      state.error = null;
+    },
+    setCurrentPost(state, action: PayloadAction<Post>) {
       state.currentPost = action.payload;
     },
-    clearPost(state) {
-      state.currentPost = null;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPosts.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchPosts.fulfilled, (state, { payload }) => {
+        state.posts = payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchPosts.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload || 'could not fetch posts.';
+      });
+
+    builder
+      .addCase(createPost.fulfilled, (state, { payload }) => {
+        state.posts.push(payload);
+        state.currentPost = payload;
+      })
+      .addCase(createPost.rejected, (state, { payload }) => {
+        state.error = payload || 'Create failed';
+      });
+    builder
+      .addCase(updatePost.fulfilled, (state, { payload }) => {
+        const idx = state.posts.findIndex((p) => p.id === payload.id);
+        if (idx !== -1) {
+          state.posts[idx] = payload;
+        }
+        if (state.currentPost && state.currentPost.id === payload.id) {
+          state.currentPost = payload;
+        }
+      })
+      .addCase(updatePost.rejected, (state, { payload }) => {
+        state.error = payload || 'Update failed';
+      });
+
+    builder
+      .addCase(deleteById.fulfilled, (state, { payload: deletedId }) => {
+        state.posts = state.posts.filter((p) => p.id !== deletedId);
+        if (state.currentPost && state.currentPost.id === deletedId) {
+          state.currentPost = null
+        }
+      })
+      .addCase(deleteById.rejected, (state, { payload }) => {
+        state.error = payload || 'Delete failed';
+      });
   },
 });
 
-export const { setPost, clearPost } = postSlice.actions;
+export const { clearError, setCurrentPost } = postSlice.actions;
 export const postReducer = postSlice.reducer;
