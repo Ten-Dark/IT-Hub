@@ -2,41 +2,27 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { PostService } from '@/entities/Post/api/PostService.ts';
 import { Post } from '@/entities/Post/model/types.ts';
 
-export const fetchPosts = createAsyncThunk<Post[]>(
-  'posts/fetchAll',
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await PostService.getAll();
-      return res.documents.map((doc) => ({
-        title: doc.title,
-        description: doc.description,
-        image: doc.image,
-        category: doc.category,
-        tags: doc.tags,
-      }));
-    } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error);
-      return rejectWithValue(message);
-    }
-  },
-);
+export const fetchPosts = createAsyncThunk<
+  Post[],
+  void,
+  { rejectValue: string }
+>('posts/fetchPosts', async (_, { rejectWithValue }) => {
+  try {
+    return await PostService.getAll();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return rejectWithValue(message);
+  }
+});
 
 export const createPost = createAsyncThunk<
   Post,
-  { payload: Partial<Post>; file?: File },
+  { payload: Omit<Post, 'id' | 'created_at'>; file?: File },
   { rejectValue: string }
 >('posts/create', async ({ payload, file }, { rejectWithValue }) => {
   try {
-    const doc = await PostService.create(payload, file);
-    const post: Post = {
-      title: doc.title,
-      description: doc.description,
-      image: doc.image,
-      category: doc.category,
-      tags: doc.tags,
-    };
-    return post;
-  } catch (error: unknown) {
+    return await PostService.create(payload, file);
+  } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     return rejectWithValue(message);
   }
@@ -44,18 +30,11 @@ export const createPost = createAsyncThunk<
 
 export const updatePost = createAsyncThunk<
   Post,
-  { id: string; data: Partial<Post> },
+  { id: string; payload: Partial<Omit<Post, 'id' | 'created_at'>>; file: File },
   { rejectValue: string }
->('posts/update', async ({ id, data }, { rejectWithValue }) => {
+>('posts/update', async ({ id, payload, file }, { rejectWithValue }) => {
   try {
-    const updated = await PostService.update(id, data);
-    return {
-      title: updated.title,
-      description: updated.description,
-      image: updated.image,
-      category: updated.category,
-      tags: updated.tags,
-    };
+    return await PostService.update(id, payload, file);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     return rejectWithValue(message);
@@ -71,6 +50,45 @@ export const deleteById = createAsyncThunk<
     await PostService.delete(id);
     return `Deleted: + ${id}`;
   } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    return rejectWithValue(message);
+  }
+});
+
+export const fetchPostsById = createAsyncThunk<
+  Post | null,
+  string,
+  { rejectValue: string }
+>('posts/fetchById', async (id, { rejectWithValue }) => {
+  try {
+    return await PostService.getById(id);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    return rejectWithValue(message);
+  }
+});
+
+export const fetchPostsByCategory = createAsyncThunk<
+  Post[] | null,
+  string,
+  { rejectValue: string }
+>('posts/fetchPostsByCategory', async (category, { rejectWithValue }) => {
+  try {
+    return await PostService.getByCategory(category);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return rejectWithValue(message);
+  }
+});
+
+export const searchPosts = createAsyncThunk<
+  Post[] | null,
+  string,
+  { rejectValue: string }
+>('posts/search', async (queries, { rejectWithValue }) => {
+  try {
+    return await PostService.search(queries);
+  } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     return rejectWithValue(message);
   }

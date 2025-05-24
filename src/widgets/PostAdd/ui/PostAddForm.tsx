@@ -7,10 +7,10 @@ import { TextInput } from '@/shared/ui/Input/ui/TextInput.tsx';
 import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
 import { CategorySelect } from '@/widgets/categorySelect/ui/CategorySelect.tsx';
 import { TagsSelect } from '@/widgets/tagsSelect/ui/TagsSelect.tsx';
-import { UploadImg } from '@/widgets/PostAdd/ui/uploadImg/UploadImg.tsx';
 import { createPost } from '@/entities/Post/model/postThunks.ts';
 import { Post } from '@/entities/Post/model/types.ts';
 import { Tag } from '@/entities/Tags/model/types.ts';
+import { UploadImg } from '@/widgets/PostAdd/ui/uploadImg/UploadImg.tsx';
 
 interface Props {
   onClose: () => void;
@@ -20,7 +20,7 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
   const [file, setFile] = useState<File | null>(null);
   const dispatch = useAppDispatch();
 
-  const initialValues: Omit<Post, 'id'> = {
+  const initialValues: Omit<Post, 'id' | 'created_at'> = {
     title: '',
     description: '',
     image: '',
@@ -67,6 +67,7 @@ export const PostAddForm: React.FC<Props> = ({ onClose }) => {
           const url = URL.createObjectURL(f);
           await setFieldValue('image', url);
         };
+
         return (
           <S.PostAddForm method="dialog">
             <S.PostAddContainer>
