@@ -11,7 +11,6 @@ import { createPost } from '@/entities/Post/model/postThunks.ts';
 import { Post } from '@/entities/Post/model/types.ts';
 import { Tag } from '@/entities/Tags/model/types.ts';
 import { UploadImg } from '@/widgets/PostAdd/ui/uploadImg/UploadImg.tsx';
-import { PostAddControls } from './PostAddForm.styled.ts';
 
 interface Props {
   onClose: () => void;
