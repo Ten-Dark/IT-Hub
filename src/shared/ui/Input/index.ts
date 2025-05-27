@@ -1,1 +1,1 @@
-export { TextInput } from './ui/TextInput.tsx';
+export * from './TextInput.tsx';

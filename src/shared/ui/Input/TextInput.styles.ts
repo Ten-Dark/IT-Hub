@@ -21,10 +21,11 @@ export const Field = styled.input<{ $size: number }>`
   width: 100%;
 `;
 
-export const TextArea = styled.textarea<{ $size: number }>`
+export const TextArea = styled.textarea<{ $size: number; $resize: string }>`
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: ${({ $size }) => `${$size}px`};
+  resize: ${({ $resize }) => $resize};
   width: 100%;
 `;

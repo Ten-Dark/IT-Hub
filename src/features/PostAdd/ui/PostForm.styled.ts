@@ -1,36 +1,44 @@
 import styled from 'styled-components';
 import { Form } from 'formik';
 
-export const PostAddForm = styled(Form)`
+export const Error = styled.span`
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+`;
+
+export const FormWrapper = styled(Form)`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: start;
-  gap: 0 30px;
   max-width: 790px;
   width: 100%;
-  height: auto;
+  height: 40%;
+  gap: 0 30px;
 `;
 
 export const PostAddContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: auto;
   gap: 16px 0;
 `;
 
-export const PostAddBody = styled.div`
+export const Body = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: start;
   gap: 6px 0;
   width: 100%;
+  transition: all 0.2s ease-in-out;
 `;
 
-export const PostAddOptions = styled.div`
+export const Options = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,15 +48,15 @@ export const PostAddOptions = styled.div`
   height: fit-content;
 `;
 
-export const PostAddButtons = styled.div`
+export const Buttons = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px 0;
+  gap: 0 2rem;
+  align-self: end;
 `;
 
-export const PostAddAcceptButton = styled.button`
+export const Submit = styled.button`
   color: #404040;
   font-weight: 700;
   border-radius: 4px;
@@ -58,7 +66,8 @@ export const PostAddAcceptButton = styled.button`
   cursor: pointer;
   border: 1px solid #404040;
 `;
-export const PostAddCancelButton = styled.button`
+
+export const Cancel = styled.button`
   background-color: #f87066;
   color: #fff;
   font-weight: 700;

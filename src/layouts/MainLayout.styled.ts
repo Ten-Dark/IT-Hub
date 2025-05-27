@@ -13,7 +13,7 @@ export const PostAddDialog = styled.dialog`
   display: block;
   visibility: hidden;
   opacity: 0;
-  height: max-content;
+  min-height: max-content;
 
   &[open] {
     transition: all 0.2s ease-in-out;
@@ -22,16 +22,16 @@ export const PostAddDialog = styled.dialog`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: max-content;
-    max-width: calc(76rem / 1.5);
-    width: 100%;
+    max-width: 40rem;
+    width: 44.44%;
     margin: auto;
+    min-height: max-content;
   }
 
   transition: all 0.2s linear;
   border: none;
   padding: 50px 100px;
-  border-radius: 4px;
+  border-radius: 6px;
 
   &::backdrop {
     background: rgba(0, 0, 0, 0.6);
