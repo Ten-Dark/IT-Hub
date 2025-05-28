@@ -1,7 +1,4 @@
-export interface Tag {
-  id: string;
-  value: string;
-}
+export type Tag = string;
 
 export interface TagsSelectProps {
   tags: Tag[];

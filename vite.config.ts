@@ -9,5 +9,16 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src'),
     }
-  }
+  },
+  // server: {
+  //   headers: {
+  //     'Content-Security-Policy': [
+  //       "default-src 'self'",
+  //       "img-src 'self' blob: data:",
+  //       "script-src 'self' 'unsafe-inline'",
+  //       "style-src 'self' 'unsafe-inline'",
+  //       `connect-src 'self' ${import.meta.env.VITE_SUPABASE_URL}`
+  //     ].join('; ')
+  //   }
+  // }
 })

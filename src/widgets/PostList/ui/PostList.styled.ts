@@ -1,20 +1,36 @@
 import styled from 'styled-components';
 
-export const PostContainer = styled.div`
-  max-width: 57rem;
+export const SysMessage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
   width: 100%;
+  height: 100%;
+  padding: 40px 0;
+`;
+
+export const PostContainer = styled.div`
+  width: 57rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 30px 0;
+  gap: 40px 0;
+`;
+
+export const PostImage = styled.img`
+  height: 200px;
+  width: 200px;
 `;
 
 export const PostItem = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  word-break: break-all;
 
   & img {
     border-radius: 5px;
@@ -27,6 +43,7 @@ export const PostBody = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 0 18px;
+  gap: 10px 0;
 `;
 
 export const PostInfo = styled.div`
@@ -34,6 +51,14 @@ export const PostInfo = styled.div`
   flex-direction: column;
   justify-content: start;
   width: 100%;
+  gap: 4px 0;
+`;
+
+export const PostOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
   gap: 8px 0;
 `;
 
@@ -72,17 +97,42 @@ export const PostContentInfo = styled.div`
   gap: 2px 0;
 `;
 export const PostTitle = styled.h2`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
   font-size: 20px;
   font-weight: 600;
-  line-height: 24px;
   color: ${({ theme }) => theme.colors.primary};
 `;
 export const PostDescription = styled.p`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   font-size: 14px;
   font-weight: 500;
-  line-height: 20px;
   color: ${({ theme }) => theme.colors.text};
 `;
+export const PostTags = styled.div`
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0 8px;
+  width: 100%;
+`;
+export const PostTag = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  color: ${({ theme }) => theme.colors.actionText};
+  background: ${({ theme }) => theme.colors.primary};
+  border-radius: 4px;
+`;
+
 export const PostFeatures = styled.div`
   display: flex;
   align-items: center;
@@ -93,7 +143,7 @@ export const PostFeatures = styled.div`
   font-size: 14px;
 `;
 export const PostCategory = styled.p`
-  background-color: ${({ theme }) => theme.colors.background2};
+  background-color: ${({ theme }) => theme.colors.actionText};
   padding: 6px 8px;
   border-radius: 8px;
 `;

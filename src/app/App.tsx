@@ -1,38 +1,34 @@
-import { account } from '@/shared/config/appwrite';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '@/shared/config/theme/GlobalStyles.ts';
 import { theme } from '@/shared/config/theme/theme.ts';
 import * as S from './App.styled.ts';
-import Header from '@/widgets/Header/Header';
+import { NotFound } from '@/pages/NotFound.tsx';
+import { Profile } from '@/pages/Profile.tsx';
+import { AuthLayout } from '@/layouts/AuthLayout.tsx';
+import { MainLayout } from '@/layouts/MainLayout.tsx';
 import { PostList } from '@/widgets/PostList/ui/PostList.tsx';
-import { Sidebar } from '@/widgets/Sidebar/Sidebar.tsx';
-import { useEffect, useRef } from 'react';
-import { PostAddForm } from '@/widgets/PostAdd/ui/PostAddForm.tsx';
+import { Route, Routes } from 'react-router-dom';
+import { Auth } from '@/pages/Auth.tsx';
 
-function App() {
-  const modalRef = useRef<HTMLDialogElement>(null);
-
-  const openPostAddForm = () => {
-    modalRef.current?.showModal();
-  };
-  useEffect(() => {
-    console.log(account);
-  }, []);
+export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <S.AppContainer>
-        <Header />
-        <S.Content>
-          <PostList />
-          <Sidebar openPostAddForm={openPostAddForm} />
-        </S.Content>
-        <S.PostAddDialog ref={modalRef}>
-          <PostAddForm onClose={() => modalRef.current?.close()} />
-        </S.PostAddDialog>
+        <Routes>
+          {/* Общий лэйаут */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<PostList />} />
+          </Route>
+
+          {/* Auth-лэйаут */}
+          <Route element={<AuthLayout />}>
+            <Route path="/auth/login" element={<Auth />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
       </S.AppContainer>
     </ThemeProvider>
   );
-}
-
-export default App;
+};

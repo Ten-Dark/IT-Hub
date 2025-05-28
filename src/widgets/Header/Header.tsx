@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import { Auth } from '@/features/Auth/ui/Auth';
 import * as S from './Header.style.ts';
+import { NavLink } from 'react-router-dom';
 
 const list = [
   'Инновации и технологии',
@@ -15,6 +16,8 @@ const Header = () => {
   const [date, setDate] = useState(new Date());
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [isAuth, _] = useState<boolean>(false);
 
   const weekday: object = { weekday: 'short' };
   const month: object = { month: 'long' };
@@ -43,14 +46,24 @@ const Header = () => {
             </S.P>
             <S.P>{date.toLocaleTimeString()}</S.P>
           </div>
-          <S.Logo $active={active}>IT-HUB</S.Logo>
+          <NavLink end to="/">
+            <S.Logo $active={active}>IT-HUB</S.Logo>
+          </NavLink>
           <S.Div>
             <S.Search $active={active}>
               <IoSearch onClick={() => setActive(!active)} />
               <S.Input ref={inputRef} $active={active} />
             </S.Search>
             <S.Personal>
-              <Auth />
+              {isAuth ? (
+                <NavLink end to="/profile">
+                  <Auth />
+                </NavLink>
+              ) : (
+                <NavLink end to="/auth/login">
+                  <Auth />
+                </NavLink>
+              )}
             </S.Personal>
           </S.Div>
         </S.Div>

@@ -18,7 +18,7 @@ export const PostAddButton = styled.button`
   justify-content: center;
   font-weight: 700;
   color: white;
-  background-color: ${({ theme }) => theme.colors.actionBackground};
+  background-color: ${({ theme }) => theme.colors.action};
   border-radius: 6px;
   gap: 0 10px;
   padding: 12px 46px;
@@ -26,7 +26,7 @@ export const PostAddButton = styled.button`
 `;
 
 export const PlusIcon = styled(FaPlus)`
-  color: ${({ theme }) => theme.colors.actionBackground};
+  color: ${({ theme }) => theme.colors.action};
   background: white;
   stroke: white;
   width: 26px;
