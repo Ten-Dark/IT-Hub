@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { TextInput } from '@/shared/ui/Input';
+import { Input } from '@/shared/ui/Input';
 import { TagsSelectProps } from '@/entities/Tags/model/types.ts';
 import * as S from './TagsSelect.styled.ts';
 
@@ -49,7 +49,7 @@ export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
           </span>
         ))}
       </S.TagInput>
-      <TextInput
+      <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '@/widgets/Header/Header';
 import * as S from './MainLayout.styled.ts';
 import { Sidebar } from '@/widgets/Sidebar/Sidebar.tsx';
-import { PostAddForm } from '@/widgets/PostAdd/ui/PostAddForm.tsx';
+import { PostForm } from '@/features/PostAdd/ui/PostForm.tsx';
 
 export const MainLayout: React.FC = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -17,10 +17,10 @@ export const MainLayout: React.FC = () => {
       <Header />
       <div style={{ padding: '1rem' }}>
         <S.Content>
-          <Outlet /> {/* Здесь будут рендериться PostList и т.д. */}
+          <Outlet />
           <Sidebar openPostAddForm={openPostAddForm} />
           <S.PostAddDialog ref={modalRef}>
-            <PostAddForm onClose={() => modalRef.current?.close()} />
+            <PostForm onClose={() => modalRef.current?.close()} />
           </S.PostAddDialog>
         </S.Content>
       </div>
