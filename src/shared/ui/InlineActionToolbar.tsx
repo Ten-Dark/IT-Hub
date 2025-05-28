@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { IoIosArrowDown } from 'react-icons/io';
 import { VscSmiley } from 'react-icons/vsc';
-import { EmojiSelector } from '@/shared/ui/EmojiSelector.tsx';
-import { GoImage } from 'react-icons/go';
-import { RiAiGenerateText } from 'react-icons/ri';
-import { useInsertEmoji } from '@/shared/lib/hooks/useInsertEmoji.ts';
-import { FormikHelpers } from 'formik';
-import { Post } from '@/entities/Post/model/types.ts';
 import * as React from 'react';
 import { ReactNode } from 'react';
 
@@ -56,8 +50,8 @@ const StyledListActions = styled.div<{ $isActions: boolean }>`
 interface Props {
   actionsPosition: number;
   isActions: boolean;
-  setIsActions: (isActions: boolean) => void;
-  setShowEmojiPicker: (showEmojiPicker: boolean) => void;
+  setIsActions: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowEmojiPicker: React.Dispatch<React.SetStateAction<boolean>>;
   children: ReactNode;
 }
 
@@ -68,11 +62,14 @@ export const InlineActionToolbar: React.FC<Props> = ({
   setShowEmojiPicker,
   children,
 }) => {
+  const toggleIsActions = () => setIsActions(prev => !prev);
+  const toggleEmojiPicker = () => setShowEmojiPicker(prev => !prev);
+
   return (
     <StyledPostActions $actionsPosition={actionsPosition}>
-      <IoIosArrowDown onClick={() => setIsActions((val) => !val)} />
+      <IoIosArrowDown onClick={toggleIsActions} />
       <StyledListActions $isActions={isActions}>
-        <VscSmiley onClick={() => setShowEmojiPicker((val) => !val)} />
+        <VscSmiley onClick={toggleEmojiPicker} />
         {children}
       </StyledListActions>
     </StyledPostActions>

@@ -1,1 +1,2 @@
-export * from './TextInput.tsx';
+export * from './Input.tsx';
+export * from './Input.types.ts';

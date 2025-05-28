@@ -17,7 +17,7 @@ const Header = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, _] = useState<boolean>(false);
 
   const weekday: object = { weekday: 'short' };
   const month: object = { month: 'long' };
