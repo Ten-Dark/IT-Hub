@@ -53,6 +53,7 @@ export const PostForm: React.FC<Props> = ({ onClose }) => {
           setFile(f);
           const url = URL.createObjectURL(f);
           await setFieldValue('image', url);
+          // Использовать карирование
         };
         return (
           <S.FormWrapper>

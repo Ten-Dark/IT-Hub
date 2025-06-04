@@ -1,4 +1,9 @@
-import type { FormikErrors, FormikHelpers, FormikTouched, FormikValues } from 'formik';
+import type {
+  FormikErrors,
+  FormikHelpers,
+  FormikTouched,
+  FormikValues,
+} from 'formik';
 import type { Post } from '@/entities/Post/model/types';
 
 export interface PostFormFormikProps {
@@ -8,4 +13,7 @@ export interface PostFormFormikProps {
   values: FormikValues;
 }
 
-export type PostFormPartialProps = Omit<PostFormFormikProps, 'values' | 'isSubmitting'>;
+export type PostFormPartialProps = Omit<
+  PostFormFormikProps,
+  'values' | 'isSubmitting'
+>;
