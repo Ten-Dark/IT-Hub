@@ -1,6 +1,6 @@
 import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
 import React, { useEffect } from 'react';
-import { fetchPosts } from '@/entities/Post/model/postThunks.ts';
+import { fetchPosts } from '@/entities/post/model/postThunks.ts';
 import * as S from './PostCard.styled.ts';
 import { PostMeta } from '@/widgets/Post/ui/PostMeta.tsx';
 import { Flex } from '@/shared/ui/Flex.tsx';

@@ -4,7 +4,7 @@ import type {
   FormikTouched,
   FormikValues,
 } from 'formik';
-import type { Post } from '@/entities/Post/model/types';
+import type { Post } from '@/entities/post/model/types.ts';
 
 export interface PostFormFormikProps {
   setFieldValue: FormikHelpers<Post>['setFieldValue'];

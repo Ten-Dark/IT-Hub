@@ -3,14 +3,14 @@ import { ValidationError } from '@/shared/ui/ValidationError.styled.ts';
 import * as S from './PostForm.styled';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Post } from '@/entities/Post/model/types';
-import { Tag } from '@/entities/Tags/model/types';
-import { createPost } from '@/entities/Post/model/postThunks';
+import { Tag } from '@/entities/tags/model/types';
+import { Post } from '@/entities/post/model/types';
+import { createPost } from '@/entities/post/model/postThunks';
 import { useAppDispatch } from '@/shared/lib/hooks/redux';
 import { UploadImage } from '@/shared/ui';
-import { PostFormFields } from '@/widgets/PostForm/ui/PostFormFields.tsx';
-import { PostFormOptions } from '@/widgets/PostForm/ui/PostFormOptions.tsx';
-import { PostFormActions } from '@/widgets/PostForm/ui/PostFormActions.tsx';
+import { PostFormFields } from '@/widgets/Post/form/ui/PostFormFields.tsx';
+import { PostFormOptions } from '@/widgets/Post/form/ui/PostFormOptions.tsx';
+import { PostFormActions } from '@/widgets/Post/form/ui/PostFormActions.tsx';
 
 interface Props {
   onClose: () => void;

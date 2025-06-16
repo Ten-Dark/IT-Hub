@@ -1,11 +1,11 @@
-import { Post } from '@/entities/Post/model/types.ts';
+import { Post } from '@/entities/post/model/types.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   createPost,
   deleteById,
   fetchPosts,
   updatePost,
-} from '@/entities/Post/model/postThunks.ts';
+} from '@/entities/post/model/postThunks.ts';
 
 interface PostState {
   posts: Post[];

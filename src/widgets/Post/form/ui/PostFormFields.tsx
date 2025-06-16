@@ -6,7 +6,7 @@ import { GoImage } from 'react-icons/go';
 import { useInsertEmoji } from '@/shared/lib/hooks/useInsertEmoji.ts';
 import { EmojiSelector, InlineActionToolbar, Input } from '@/shared/ui';
 import { ValidationError } from '@/shared/ui/ValidationError.styled.ts';
-import { PostFormPartialProps } from '@/widgets/PostForm/lib/types.ts';
+import { PostFormPartialProps } from '@/widgets/Post/PostForm/lib/types.ts';
 
 const Container = styled.div`
   position: relative;

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setUser } from '@/entities/User/model/userSlice.ts';
+import { setUser } from '@/entities/user/model/userSlice.ts';
 import * as React from 'react';
 import { IoPersonSharp } from 'react-icons/io5';
 
