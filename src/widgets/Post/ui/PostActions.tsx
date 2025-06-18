@@ -31,7 +31,6 @@ export const PostActions: React.FC<PostActionsProps> = ({
       });
   };
 
-export const PostActions: React.FC<PostActionsProps> = ({ category }) => {
   return (
     <S.PostFeatures>
       <S.PostCategory>{category}</S.PostCategory>
