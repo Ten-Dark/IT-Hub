@@ -123,23 +123,6 @@ export const PostMethods = {
     return data as Post[];
   },
 
-  async likePost(
-    id: string,
-    currentLikeIds: string[],
-  ): Promise<{ likedIds: string[] }> {
-    console.log('[STUB] LIKE for:', id);
-    const updated = [...currentLikeIds, id];
-    return { likedIds: updated };
-  },
-  async unlikePost(
-    id: string,
-    currentLikeIds: string[],
-  ): Promise<{ likedIds: string[] }> {
-    console.log('[STUB] UNLIKE for:', id);
-    const updated = currentLikeIds.filter((likeId) => likeId !== id);
-    return { likedIds: updated };
-  },
-
   async getPaginated(limit: number, offset: number): Promise<Post[]> {
     const { data, error } = await supabase
       .from('posts')

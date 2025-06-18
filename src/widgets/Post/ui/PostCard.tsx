@@ -7,7 +7,6 @@ import { Flex } from '@/shared/ui/Flex.tsx';
 import { PostActions } from '@/widgets/Post/ui/PostActions.tsx';
 
 interface PostCardProps {
-  id: string;
   image: string | undefined;
   title: string;
   description: string;
@@ -16,7 +15,6 @@ interface PostCardProps {
 }
 
 export const PostCard: React.FC<PostCardProps> = ({
-  id,
   image,
   title,
   description,
@@ -40,7 +38,7 @@ export const PostCard: React.FC<PostCardProps> = ({
               <S.PostTag key={tag}>{tag}</S.PostTag>
             ))}
           </S.PostTags>
-          <PostActions category={category} postId={id} />
+          <PostActions category={category} />
         </Flex>
       </S.PostBody>
     </S.PostItem>
