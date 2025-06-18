@@ -1,5 +1,5 @@
-import { PostMethods } from '@/entities/Post/api/PostMethods.ts';
-import { Post } from '@/entities/Post/model/types.ts';
+import { PostMethods } from '@/entities/post/api/PostMethods.ts';
+import { Post } from '@/entities/post/model/types.ts';
 
 export const PostService = {
   create: async (

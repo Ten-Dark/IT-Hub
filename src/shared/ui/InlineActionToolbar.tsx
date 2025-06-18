@@ -62,8 +62,8 @@ export const InlineActionToolbar: React.FC<Props> = ({
   setShowEmojiPicker,
   children,
 }) => {
-  const toggleIsActions = () => setIsActions(prev => !prev);
-  const toggleEmojiPicker = () => setShowEmojiPicker(prev => !prev);
+  const toggleIsActions = () => setIsActions((prev) => !prev);
+  const toggleEmojiPicker = () => setShowEmojiPicker((prev) => !prev);
 
   return (
     <StyledPostActions $actionsPosition={actionsPosition}>
