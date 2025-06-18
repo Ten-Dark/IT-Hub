@@ -15,7 +15,21 @@ interface PostActionsProps {
   category: string;
 }
 
-export const PostActions: React.FC<PostActionsProps> = ({ category }) => {
+export const PostActions: React.FC<PostActionsProps> = ({
+  category,
+  postId,
+}) => {
+  const dispatch = useAppDispatch();
+  const isLiked = useAppSelector((s) => selectIsLiked(s, postId));
+
+  const onToggle = () => {
+    dispatch(toggleLike(postId))
+      .unwrap()
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <S.PostFeatures>
       <S.PostCategory>{category}</S.PostCategory>
