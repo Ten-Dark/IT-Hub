@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Input } from '@/shared/ui/Input';
-import { TagsSelectProps } from '@/entities/Tags/model/types.ts';
+import { TagsSelectProps } from '@/entities/tags/model/types.ts';
 import * as S from './TagsSelect.styled.ts';
 
 export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
