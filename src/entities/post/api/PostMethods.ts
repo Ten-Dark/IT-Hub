@@ -1,6 +1,5 @@
-// PostMethods.ts
 import { supabase } from '@/shared/config/supabase';
-import { Post } from '@/entities/Post/model/types.ts';
+import { Post } from '@/entities/post/model/types.ts';
 
 const BUCKET = 'post-images';
 

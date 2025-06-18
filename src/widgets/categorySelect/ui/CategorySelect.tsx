@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import * as S from './CategorySelect.styled.ts';
-import { CategorySelectProps } from '@/entities/Category/model/types.ts';
+import { CategorySelectProps } from '@/entities/category/model/types.ts';
 
 export const CategorySelect: React.FC<CategorySelectProps> = ({
   options = [],

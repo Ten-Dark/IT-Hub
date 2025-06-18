@@ -2,7 +2,7 @@ import React from 'react';
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
 import styled from 'styled-components';
 import { FormikHelpers } from 'formik';
-import { Post } from '@/entities/Post/model/types.ts';
+import { Post } from '@/entities/post/model/types.ts';
 
 interface Props {
   insertEmoji: (
