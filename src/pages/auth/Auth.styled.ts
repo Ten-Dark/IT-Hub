@@ -65,7 +65,7 @@ export const MainOverlay = styled.div<{ $click: boolean }>`
 export const LeftOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
   // transform: ${({ $click }) =>
     $click ? 'translateX(0%)' : 'translateX(100%)'};
-  right: 0;
+  left: 0;
   z-index: ${({ $click }) => ($click ? 4 : 5)};
   //opacity: ${({ $click }) => ($click ? '0' : '1')};
 
@@ -81,7 +81,7 @@ export const LeftOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
 `;
 
 export const RightOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
-  left: 0;
+  right: 0;
   z-index: ${({ $click }) => ($click ? 5 : 4)};
 
   form {
