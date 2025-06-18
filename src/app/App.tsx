@@ -8,7 +8,7 @@ import { AuthLayout } from '@/layouts/AuthLayout.tsx';
 import { MainLayout } from '@/layouts/MainLayout.tsx';
 import { PostList } from '@/features/PostList/ui/PostList.tsx';
 import { Route, Routes } from 'react-router-dom';
-import { Auth } from '@/pages/Auth.tsx';
+import { Auth } from '@/pages/auth/Auth.tsx';
 
 export const App = () => {
   return (
@@ -21,7 +21,7 @@ export const App = () => {
             <Route path="/" element={<PostList />} />
           </Route>
 
-          {/* Auth-лэйаут */}
+          {/* AuthButtonNavigate-лэйаут */}
           <Route element={<AuthLayout />}>
             <Route path="/auth/login" element={<Auth />} />
             <Route path="/profile" element={<Profile />} />

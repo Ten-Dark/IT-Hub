@@ -19,6 +19,3 @@ export const SysMessage = styled.div`
   height: 100%;
   padding: 40px 0;
 `;
-
-
-
