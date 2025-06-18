@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
-import { Auth } from '@/features/Auth/ui/Auth';
+import { AuthButtonNavigate } from '@/features/Auth/ui/AuthButtonNavigate.tsx';
 import * as S from './Header.style.ts';
 import { NavLink } from 'react-router-dom';
 
@@ -57,11 +57,11 @@ const Header = () => {
             <S.Personal>
               {isAuth ? (
                 <NavLink end to="/profile">
-                  <Auth />
+                  <AuthButtonNavigate />
                 </NavLink>
               ) : (
                 <NavLink end to="/auth/login">
-                  <Auth />
+                  <AuthButtonNavigate />
                 </NavLink>
               )}
             </S.Personal>
