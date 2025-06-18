@@ -41,7 +41,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
           <S.Separator>
             или используйте
-            {mode === 'signUp' ? ' почту для регистрации' : 'аккаунт'}
+            {mode === 'signUp' ? ' почту для регистрации' : ' аккаунт'}
           </S.Separator>
 
           {mode === 'signUp' && (
