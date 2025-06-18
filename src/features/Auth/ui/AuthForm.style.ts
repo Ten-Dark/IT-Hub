@@ -10,17 +10,13 @@ export const Separator = styled.p`
 `;
 
 export const Button = styled.button`
-  font-size: 1rem;
-  font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: white;
-  padding: 0.8rem 2rem;
-  border-radius: 8px;
-  margin-top: 0.8rem;
-  cursor: pointer;
-    transition: background-color 0.1s ease-in-out;
-    
-    &:hover {
-        background-color: ${({ theme }) => theme.colors.secondary};
-    }
-`;
+	font-size: 1rem;
+    font-weight: 600;
+	//background-color: transparent;
+	//border: 1px solid ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: white;
+	padding: 0.8rem 2rem;
+	border-radius: 8px;
+	margin-top: 0.8rem;
+`
