@@ -63,11 +63,11 @@ export const MainOverlay = styled.div<{ $click: boolean }>`
 `;
 
 export const LeftOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
-  transform: ${({ $click }) =>
+  // transform: ${({ $click }) =>
     $click ? 'translateX(0%)' : 'translateX(100%)'};
   left: 0;
   z-index: ${({ $click }) => ($click ? 4 : 5)};
-  opacity: ${({ $click }) => ($click ? '0' : '1')};
+  //opacity: ${({ $click }) => ($click ? '0' : '1')};
 
   form {
     display: flex;
@@ -81,11 +81,8 @@ export const LeftOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
 `;
 
 export const RightOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
-  transform: ${({ $click }) =>
-    $click ? 'translateX(-100%)' : 'translateX(0%)'};
   right: 0;
   z-index: ${({ $click }) => ($click ? 5 : 4)};
-  opacity: ${({ $click }) => ($click ? '1' : '0')};
 
   form {
     display: flex;
@@ -99,7 +96,6 @@ export const RightOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
 `;
 
 export const LeftCaption = styled(CaptionGlobal)<{ $click: boolean }>`
-  opacity: ${({ $click }) => ($click ? '0' : '1')};
   left: ${({ $click }) => ($click ? '-100%' : '0%')};
   gap: 20px 0;
 
@@ -113,8 +109,7 @@ export const LeftCaption = styled(CaptionGlobal)<{ $click: boolean }>`
   }
 `;
 export const RightCaption = styled(CaptionGlobal)<{ $click: boolean }>`
-	opacity: ${({ $click }) => ($click ? '1' : '0')};
-	right: ${({ $click }) => ($click ? '0%' : '-70%')};
+	right: ${({ $click }) => ($click ? '0%' : '-100%')};
 	gap: 20px 0;
 
 	h2 {
@@ -131,11 +126,11 @@ export const Sign = styled.button`
   bottom: 35%;
 
   background-color: transparent;
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 6px;
   padding: 0.8rem 2rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: white;
   cursor: pointer;
   transition: all 0.1s ease-in-out;

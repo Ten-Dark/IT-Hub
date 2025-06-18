@@ -34,13 +34,14 @@ export const AuthForm: React.FC<AuthFormProps> = ({
       {({ errors, touched, isSubmitting }) => (
         <Form>
           <S.Welcome>
-            {mode === 'signUp' ? 'Create Account' : 'Sign in'}
+            {mode === 'signUp' ? 'Создать аккаунт' : 'Авторизация'}
           </S.Welcome>
+
           <SocialButtons />
 
           <S.Separator>
-            or use your{' '}
-            {mode === 'signUp' ? 'email for registration' : 'account'}
+            или используйте
+            {mode === 'signUp' ? ' почту для регистрации' : 'аккаунт'}
           </S.Separator>
 
           {mode === 'signUp' && (
@@ -75,8 +76,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({
             {({ field }: FieldProps) => (
               <>
                 <Input {...field} type="password" placeholder="Пароль" />
-                {errors.email && touched.email && (
-                  <ValidationError>{errors.email}</ValidationError>
+                {errors.password && touched.password && (
+                  <ValidationError>{errors.password}</ValidationError>
                 )}
               </>
             )}
