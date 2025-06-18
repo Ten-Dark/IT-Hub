@@ -3,7 +3,7 @@ import { setUser } from '@/entities/user/model/userSlice.ts';
 import * as React from 'react';
 import { IoPersonSharp } from 'react-icons/io5';
 
-export const Auth: React.FC = () => {
+export const AuthButtonNavigate: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
