@@ -1,4 +1,4 @@
-import { Tag } from '@/entities/tags/model/types.ts';
+import { Tag } from '@/entities/Tags/model/types.ts';
 
 export interface Post {
   id: string;
