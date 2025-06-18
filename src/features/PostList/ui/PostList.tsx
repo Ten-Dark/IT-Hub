@@ -20,6 +20,7 @@ export const PostList: React.FC = () => {
       {posts?.map((post) => (
         <PostCard
           key={post.id}
+          id={post.id}
           title={post.title}
           description={post.description}
           image={post.image}
