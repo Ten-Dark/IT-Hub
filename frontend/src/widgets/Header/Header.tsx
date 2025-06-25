@@ -42,8 +42,8 @@ const Header = () => {
         <S.Div>
           <div>
             <S.P>
-              {date.toLocaleString('ru-RU', weekday).toUpperCase()},{' '}
-              {date.getUTCDate()} {date.toLocaleString('ru-RU', month)},{' '}
+              {date.toLocaleString('ru-RU', weekday).toUpperCase()},
+              {date.getUTCDate()} {date.toLocaleString('ru-RU', month)},
               {date.getUTCFullYear()}
             </S.P>{' '}
             <S.P>{date.toLocaleTimeString()}</S.P>

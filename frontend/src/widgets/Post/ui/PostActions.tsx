@@ -33,16 +33,15 @@ export const PostActions: React.FC<PostActionsProps> = ({
 
   return (
     <S.PostFeatures>
-      {' '}
-      <S.PostCategory>{category}</S.PostCategory>{' '}
+      <S.PostCategory>{category}</S.PostCategory>
       <S.postActions>
         {isLiked ? (
           <MdFavorite size={24} onClick={onToggle} />
         ) : (
           <MdFavoriteBorder size={24} onClick={onToggle} />
-        )}{' '}
-        <LiaComments size={24} /> <MdOutlineBookmarks size={24} />{' '}
-        <MdOutlineShare size={24} />{' '}
+        )}
+        <LiaComments size={24} /> <MdOutlineBookmarks size={24} />
+        <MdOutlineShare size={24} />
       </S.postActions>
     </S.PostFeatures>
   );

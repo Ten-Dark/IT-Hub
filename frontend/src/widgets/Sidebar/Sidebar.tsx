@@ -8,12 +8,10 @@ interface Props {
 export const Sidebar: React.FC<Props> = ({ openPostAddForm }) => {
   return (
     <S.SidebarContainer>
-      {' '}
       <S.PostAddButton onClick={openPostAddForm}>
-        {' '}
         <S.PlusIcon /> <span>Добавить пост</span>
-      </S.PostAddButton>{' '}
-      <S.Activities>Активности</S.Activities>{' '}
+      </S.PostAddButton>
+      <S.Activities>Активности</S.Activities>
     </S.SidebarContainer>
   );
 };

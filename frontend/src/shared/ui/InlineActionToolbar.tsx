@@ -67,12 +67,10 @@ export const InlineActionToolbar: React.FC<Props> = ({
 
   return (
     <StyledPostActions $actionsPosition={actionsPosition}>
-      {' '}
       <IoIosArrowDown onClick={toggleIsActions} />
       <StyledListActions $isActions={isActions}>
-        {' '}
         <VscSmiley onClick={toggleEmojiPicker} /> {children}
-      </StyledListActions>{' '}
+      </StyledListActions>
     </StyledPostActions>
   );
 };

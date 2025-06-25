@@ -13,25 +13,21 @@ import { Auth } from '@/pages/auth/Auth.tsx';
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      {' '}
-      <GlobalStyles />{' '}
+      <GlobalStyles />
       <S.AppContainer>
-        {' '}
         <Routes>
-          {/* Общий лэйаут */}{' '}
+          {/* Общий лэйаут */}
           <Route element={<MainLayout />}>
-            {' '}
-            <Route path="/" element={<PostList />} />{' '}
+            <Route path="/" element={<PostList />} />
           </Route>
-          {/* AuthButtonNavigate-лэйаут */}{' '}
+          {/* AuthButtonNavigate-лэйаут */}
           <Route element={<AuthLayout />}>
-            {' '}
             <Route path="/auth/login" element={<Auth />} />
-            <Route path="/profile" element={<Profile />} />{' '}
-            <Route path="*" element={<NotFound />} />{' '}
-          </Route>{' '}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
-      </S.AppContainer>{' '}
+      </S.AppContainer>
     </ThemeProvider>
   );
 };

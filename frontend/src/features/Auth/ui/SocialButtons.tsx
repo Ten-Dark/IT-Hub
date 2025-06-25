@@ -46,8 +46,7 @@ export const SocialButtons: React.FC = () => {
           key={label}
           aria-label={label}
         >
-          {' '}
-          <Icon />{' '}
+          <Icon />
         </SocialButton>
       ))}
     </SocialContainer>

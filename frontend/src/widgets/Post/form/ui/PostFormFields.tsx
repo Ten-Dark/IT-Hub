@@ -31,7 +31,6 @@ export const PostFormFields: React.FC<PostFormPartialProps> = ({
 
   return (
     <Container>
-      {' '}
       <InlineActionToolbar
         actionsPosition={actionsPosition}
         isActions={isActions}
@@ -43,8 +42,8 @@ export const PostFormFields: React.FC<PostFormPartialProps> = ({
             insertEmoji={insertEmoji}
             setFieldValue={setFieldValue}
           />
-        )}{' '}
-        <GoImage /> <RiAiGenerateText />{' '}
+        )}
+        <GoImage /> <RiAiGenerateText />
       </InlineActionToolbar>
       <Field name="title">
         {({ field }: FieldProps) => (
@@ -56,7 +55,7 @@ export const PostFormFields: React.FC<PostFormPartialProps> = ({
                 setActionsPosition(e.currentTarget.offsetTop);
                 setInputContext(e.currentTarget, 'title');
               }}
-            />{' '}
+            />
             {errors.title && touched.title && (
               <ValidationError>{errors.title}</ValidationError>
             )}
@@ -76,13 +75,13 @@ export const PostFormFields: React.FC<PostFormPartialProps> = ({
                 setActionsPosition(e.currentTarget.offsetTop);
                 setInputContext(e.currentTarget, 'description');
               }}
-            />{' '}
+            />
             {errors.description && touched.description && (
               <ValidationError>{errors.description}</ValidationError>
             )}
           </>
         )}
-      </Field>{' '}
+      </Field>
     </Container>
   );
 };

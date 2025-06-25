@@ -17,12 +17,10 @@ export const MainLayout: React.FC = () => {
       <Header />
       <div style={{ padding: '1rem' }}>
         <S.Content>
-          {' '}
-          <Outlet /> <Sidebar openPostAddForm={openPostAddForm} />{' '}
+          <Outlet /> <Sidebar openPostAddForm={openPostAddForm} />
           <S.PostAddDialog ref={modalRef}>
-            {' '}
-            <PostForm onClose={() => modalRef.current?.close()} />{' '}
-          </S.PostAddDialog>{' '}
+            <PostForm onClose={() => modalRef.current?.close()} />
+          </S.PostAddDialog>
         </S.Content>
       </div>
     </>
