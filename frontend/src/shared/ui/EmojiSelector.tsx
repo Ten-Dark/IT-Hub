@@ -27,13 +27,12 @@ export const EmojiSelector: React.FC<Props> = ({
 }) => {
   return (
     <StyledEmojiSelector>
-      {' '}
       <EmojiPicker
         onEmojiClick={(emojiData: EmojiClickData) =>
           insertEmoji(emojiData.emoji, setFieldValue)
         }
         theme={Theme.DARK}
-      />{' '}
+      />
     </StyledEmojiSelector>
   );
 };

@@ -40,9 +40,8 @@ export const CategorySelect: React.FC<CategorySelectProps> = ({
         if (e.key === 'Escape') setIsOpen(false);
       }}
     >
-      {' '}
       <S.Display onClick={() => setIsOpen((option) => !option)}>
-        {selectedLabel || 'Выберите категорию'} <S.Arrow />{' '}
+        {selectedLabel || 'Выберите категорию'} <S.Arrow />
         {isOpen && options.length > 0 && (
           <S.Options role="listbox" id="dropdown-list" $isOpen={isOpen}>
             {options.map((option, idx) => (
@@ -67,7 +66,7 @@ export const CategorySelect: React.FC<CategorySelectProps> = ({
             ))}
           </S.Options>
         )}
-      </S.Display>{' '}
+      </S.Display>
     </S.CategorySelectContainer>
   );
 };

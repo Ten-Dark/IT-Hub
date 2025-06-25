@@ -34,7 +34,6 @@ export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
   };
   return (
     <S.Container>
-      {' '}
       <S.TagInput>
         {tags?.map((tag, idx) => (
           <span
@@ -49,14 +48,14 @@ export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
             {tag}
           </span>
         ))}
-      </S.TagInput>{' '}
+      </S.TagInput>
       <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={'Придумайте тэги'}
         size={12}
-      />{' '}
+      />
       {warning && <S.Warning>{warning}</S.Warning>}
     </S.Container>
   );

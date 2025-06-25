@@ -32,22 +32,19 @@ export const PostCard: React.FC<PostCardProps> = ({
 
   return (
     <S.PostItem>
-      {' '}
-      <S.PostImage src={image} alt={title} />{' '}
+      <S.PostImage src={image} alt={title} />
       <S.PostBody>
-        {' '}
-        <PostMeta title={title} description={description} />{' '}
+        <PostMeta title={title} description={description} />
         <Flex direction="column" $justify="start" $align="start" $gap="8px 0">
-          {' '}
           <S.PostTags>
             {tags.map((tag) => (
               <S.PostTag key={tag}>{tag}</S.PostTag>
             ))}
-          </S.PostTags>{' '}
-          <PostActions category={category} postId={id} />{' '}
-        </Flex>{' '}
-      </S.PostBody>{' '}
-      <MoreButton />{' '}
+          </S.PostTags>
+          <PostActions category={category} postId={id} />
+        </Flex>
+      </S.PostBody>
+      <MoreButton />
     </S.PostItem>
   );
 };

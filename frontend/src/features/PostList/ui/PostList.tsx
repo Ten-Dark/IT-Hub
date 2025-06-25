@@ -14,7 +14,7 @@ export const PostList: React.FC = () => {
 
   return (
     <S.PostContainer>
-      {isLoading && <S.SysMessage>Loading...</S.SysMessage>}{' '}
+      {isLoading && <S.SysMessage>Loading...</S.SysMessage>}
       {error && <S.SysMessage>{error}</S.SysMessage>}
       {posts?.map((post) => (
         <PostCard

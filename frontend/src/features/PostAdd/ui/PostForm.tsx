@@ -58,29 +58,27 @@ export const PostForm: React.FC<Props> = ({ onClose }) => {
         };
         return (
           <S.FormWrapper>
-            {' '}
             <S.PostAddContainer>
-              {' '}
               <UploadImage
                 preview={values.image || ''}
                 onSelect={(f) => handleFileSelect(f)}
-              />{' '}
+              />
               {errors.image && touched.image && (
                 <ValidationError>{errors.image}</ValidationError>
-              )}{' '}
+              )}
               <PostFormFields
                 setFieldValue={setFieldValue}
                 errors={errors}
                 touched={touched}
-              />{' '}
+              />
               <PostFormOptions
                 setFieldValue={setFieldValue}
                 values={values}
                 errors={errors}
                 touched={touched}
-              />{' '}
-              <PostFormActions onClose={onClose} />{' '}
-            </S.PostAddContainer>{' '}
+              />
+              <PostFormActions onClose={onClose} />
+            </S.PostAddContainer>
           </S.FormWrapper>
         );
       }}

@@ -14,7 +14,7 @@ export const Input = forwardRef<
   const { label, fontSize = 16, ...rest } = props;
   return (
     <S.Container>
-      {label && <S.Label>{label}</S.Label>}{' '}
+      {label && <S.Label>{label}</S.Label>}
       {isTextareaMode(props)
         ? (() => {
             const {

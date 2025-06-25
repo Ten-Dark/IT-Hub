@@ -39,11 +39,9 @@ const Cancel = styled.button`
 export const PostFormActions: React.FC<Props> = ({ onClose }) => {
   return (
     <Container>
-      {' '}
       <Cancel type="button" onClick={onClose}>
-        {' '}
-        Отменить{' '}
-      </Cancel>{' '}
+        Отменить
+      </Cancel>
       <Submit type="submit">Submit</Submit>
     </Container>
   );

@@ -24,19 +24,18 @@ export const PostFormOptions: React.FC<PostFormFormikProps> = ({
 }) => {
   return (
     <Container>
-      {' '}
       <CategorySelect
         options={POST_CATEGORIES}
         value={values.category}
         onChange={(val) => setFieldValue('category', val)}
-      />{' '}
+      />
       {errors.category && touched.category && (
         <ValidationError>{errors.category}</ValidationError>
-      )}{' '}
+      )}
       <TagsSelect
         tags={values.tags}
         onChange={(tags) => setFieldValue('tags', tags)}
-      />{' '}
+      />
       {errors.tags && touched.tags && (
         <ValidationError>{errors.tags}</ValidationError>
       )}

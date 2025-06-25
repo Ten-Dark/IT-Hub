@@ -53,7 +53,6 @@ const Container = styled.div`
 
 export const MoreButton = () => (
   <Container>
-    {' '}
-    <Dot />{' '}
+    <Dot />
   </Container>
 );

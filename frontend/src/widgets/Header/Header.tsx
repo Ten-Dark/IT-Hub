@@ -36,43 +36,37 @@ const Header = () => {
 
   return (
     <S.Header>
-      {' '}
       <S.Wrapper>
-        {' '}
         <S.Div>
           <div>
             <S.P>
               {date.toLocaleString('ru-RU', weekday).toUpperCase()},
               {date.getUTCDate()} {date.toLocaleString('ru-RU', month)},
               {date.getUTCFullYear()}
-            </S.P>{' '}
+            </S.P>
             <S.P>{date.toLocaleTimeString()}</S.P>
           </div>
           <NavLink end to="/">
-            {' '}
-            <S.Logo $active={active}>IT-HUB</S.Logo>{' '}
-          </NavLink>{' '}
+            <S.Logo $active={active}>IT-HUB</S.Logo>
+          </NavLink>
           <S.Div>
-            {' '}
             <S.Search $active={active}>
-              <IoSearch onClick={() => setActive(!active)} />{' '}
-              <S.Input ref={inputRef} $active={active} />{' '}
+              <IoSearch onClick={() => setActive(!active)} />
+              <S.Input ref={inputRef} $active={active} />
             </S.Search>
             <S.Personal>
               {isAuth ? (
                 <NavLink end to="/profile">
-                  {' '}
-                  <AuthButtonNavigate />{' '}
+                  <AuthButtonNavigate />
                 </NavLink>
               ) : (
                 <NavLink end to="/auth/login">
-                  {' '}
-                  <AuthButtonNavigate />{' '}
+                  <AuthButtonNavigate />
                 </NavLink>
               )}
-            </S.Personal>{' '}
-          </S.Div>{' '}
-        </S.Div>{' '}
+            </S.Personal>
+          </S.Div>
+        </S.Div>
         <S.Ul>
           {list.map((el, i) => (
             <S.Li
@@ -85,7 +79,7 @@ const Header = () => {
           ))}
         </S.Ul>
         <hr />
-      </S.Wrapper>{' '}
+      </S.Wrapper>
     </S.Header>
   );
 };
