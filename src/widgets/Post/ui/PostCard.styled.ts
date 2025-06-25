@@ -6,14 +6,23 @@ export const PostImage = styled.img`
 `;
 
 export const PostItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  word-break: break-all;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	word-break: break-all;
+	border-radius: 8px;
+	padding: 20px;
+	transition: background-color .2s ease-in-out;
 
-  & img {
-    border-radius: 5px;
-  }
+	& img {
+		border-radius: 5px;
+	}
+
+	&:hover {
+		background-color: ${({ theme }) => theme.colors.background};
+		cursor: pointer;
+		transition: background-color .2s ease-in-out;
+	}
 `;
 
 export const PostBody = styled.div`
