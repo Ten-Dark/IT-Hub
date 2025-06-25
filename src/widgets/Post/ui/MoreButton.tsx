@@ -29,22 +29,26 @@ const Dot = styled.div`
 `;
 
 const Container = styled.div`
-  display: flex;
-  align-items: start;
-  padding: 1rem;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: background-color 0.2s ease-in-out;
+	display: flex;
+	align-items: start;
+	padding: 1rem;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+	height: min-content;
+	width: min-content;
+	border-radius: 6px;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
+	&:hover {
+		background-color: ${({ theme }) => theme.colors.secondary};
 
-    ${Dot},
-    ${Dot}::before,
+		${Dot},
+		${Dot}::before,
 		${Dot}::after {
-      background-color: ${({ theme }) => theme.colors.actionText};
-    }
-  }
+			background-color: ${({ theme }) => theme.colors.actionText};
+			height: 6px;
+			width: 6px;
+		}
+	}
 `;
 
 export const MoreButton = () => (
@@ -52,4 +56,3 @@ export const MoreButton = () => (
     <Dot />
   </Container>
 );
-// git commit -m 'feat(post-list): add more-button, improve ui'
