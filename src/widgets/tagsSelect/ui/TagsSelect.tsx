@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Input } from '@/shared/ui/Input';
-import { TagsSelectProps } from '@/entities/Tags/model/types.ts';
+import { TagsSelectProps } from '@/entities/tags/model/types.ts';
 import * as S from './TagsSelect.styled.ts';
 
 export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
@@ -17,7 +17,7 @@ export const TagsSelect: React.FC<TagsSelectProps> = ({ tags, onChange }) => {
     if (e.key === 'Enter' && inputValue.trim()) {
       const newTag = inputValue.trim();
       e.preventDefault();
-      if (tags.length > 6) showWarning('Вы можете добавить не больше 6 тэгов');
+      if (tags.length > 6) showWarning('Вы можете добавить не больше 6 тегов');
       else {
         if (tags.includes(newTag)) {
           showWarning('Нельзя дублировать тэги');

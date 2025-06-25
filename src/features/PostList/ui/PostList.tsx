@@ -1,7 +1,7 @@
 import * as S from './PostList.styled.ts';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux.ts';
 import React, { useEffect } from 'react';
-import { fetchPosts } from '@/entities/Post/model/postThunks.ts';
+import { fetchPosts } from '@/entities/post/model/postThunks.ts';
 import { PostCard } from '@/widgets/Post/ui/PostCard.tsx';
 
 export const PostList: React.FC = () => {
@@ -20,6 +20,7 @@ export const PostList: React.FC = () => {
       {posts?.map((post) => (
         <PostCard
           key={post.id}
+          id={post.id}
           title={post.title}
           description={post.description}
           image={post.image}

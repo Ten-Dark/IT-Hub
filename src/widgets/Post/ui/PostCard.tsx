@@ -1,6 +1,6 @@
 import { useAppDispatch } from '@/shared/lib/hooks/redux.ts';
 import React, { useEffect } from 'react';
-import { fetchPosts } from '@/entities/Post/model/postThunks.ts';
+import { fetchPosts } from '@/entities/post/model/postThunks.ts';
 import * as S from './PostCard.styled.ts';
 import { PostMeta } from '@/widgets/Post/ui/PostMeta.tsx';
 import { Flex } from '@/shared/ui/Flex.tsx';
@@ -8,6 +8,7 @@ import { PostActions } from '@/widgets/Post/ui/PostActions.tsx';
 import { MoreButton } from '@/widgets/Post/ui/MoreButton.tsx';
 
 interface PostCardProps {
+  id: string;
   image: string | undefined;
   title: string;
   description: string;
@@ -16,6 +17,7 @@ interface PostCardProps {
 }
 
 export const PostCard: React.FC<PostCardProps> = ({
+  id,
   image,
   title,
   description,
@@ -39,7 +41,7 @@ export const PostCard: React.FC<PostCardProps> = ({
               <S.PostTag key={tag}>{tag}</S.PostTag>
             ))}
           </S.PostTags>
-          <PostActions category={category} />
+          <PostActions category={category} postId={id} />
         </Flex>
       </S.PostBody>
       <MoreButton />

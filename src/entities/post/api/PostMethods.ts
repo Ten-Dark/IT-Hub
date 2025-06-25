@@ -1,6 +1,5 @@
-// PostMethods.ts
 import { supabase } from '@/shared/config/supabase';
-import { Post } from '@/entities/Post/model/types.ts';
+import { Post } from '@/entities/post/model/types.ts';
 
 const BUCKET = 'post-images';
 
@@ -121,6 +120,23 @@ export const PostMethods = {
       throw error;
     }
     return data as Post[];
+  },
+
+  async likePost(
+    id: string,
+    currentLikeIds: string[],
+  ): Promise<{ likedIds: string[] }> {
+    console.log('[STUB] LIKE for:', id);
+    const updated = [...currentLikeIds, id];
+    return { likedIds: updated };
+  },
+  async unlikePost(
+    id: string,
+    currentLikeIds: string[],
+  ): Promise<{ likedIds: string[] }> {
+    console.log('[STUB] UNLIKE for:', id);
+    const updated = currentLikeIds.filter((likeId) => likeId !== id);
+    return { likedIds: updated };
   },
 
   async getPaginated(limit: number, offset: number): Promise<Post[]> {

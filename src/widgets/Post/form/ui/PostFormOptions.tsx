@@ -4,7 +4,7 @@ import { POST_CATEGORIES } from '@/shared/constants/categories.ts';
 import { ValidationError } from '@/shared/ui/ValidationError.styled.ts';
 import { CategorySelect } from '@/widgets/categorySelect/ui/CategorySelect.tsx';
 import { TagsSelect } from '@/widgets/tagsSelect/ui/TagsSelect.tsx';
-import { PostFormFormikProps } from '@/widgets/PostForm/lib/types.ts';
+import { PostFormFormikProps } from '@/widgets/Post/form/types.ts';
 
 const Container = styled.div`
   display: flex;
