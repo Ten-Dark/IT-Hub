@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './PostMeta.styled.ts';
+import { PostAuthor } from '@/widgets/Post/ui/PostAuthor.tsx';
 
 interface PostMetaProps {
   title: string;
@@ -8,6 +9,7 @@ interface PostMetaProps {
 
 export const PostMeta: React.FC<PostMetaProps> = ({ title, description }) => {
   return (
+
     <S.PostInfo>
       <S.PostAuthor>
         <img src="https://i.pravatar.cc/150" alt="avatar" />

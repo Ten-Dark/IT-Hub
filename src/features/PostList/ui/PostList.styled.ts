@@ -6,7 +6,7 @@ export const PostContainer = styled.div`
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 40px 0;
+  gap: 20px 0;
 `;
 
 export const SysMessage = styled.div`

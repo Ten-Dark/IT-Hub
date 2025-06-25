@@ -5,6 +5,7 @@ import * as S from './PostCard.styled.ts';
 import { PostMeta } from '@/widgets/Post/ui/PostMeta.tsx';
 import { Flex } from '@/shared/ui/Flex.tsx';
 import { PostActions } from '@/widgets/Post/ui/PostActions.tsx';
+import { MoreButton } from '@/widgets/Post/ui/MoreButton.tsx';
 
 interface PostCardProps {
   id: string;
@@ -43,6 +44,7 @@ export const PostCard: React.FC<PostCardProps> = ({
           <PostActions category={category} postId={id} />
         </Flex>
       </S.PostBody>
+      <MoreButton />
     </S.PostItem>
   );
 };
