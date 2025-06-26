@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BACKEND_REPO="https://github.com/ваш-аккаунт/backend.git"
+BACKEND_REPO="https://github.com/moxfest/moxfest"
 BACKEND_DIR="backend"
 BRANCH="main"
 
