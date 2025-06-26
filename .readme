@@ -1,0 +1,24 @@
+## Project Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Ten-Dark/IT-Hub
+
+./init-backend.sh
+
+cd frontend
+npm install
+
+# Backend
+cd backend
+npm run dev
+
+# Frontend (in separate terminal)
+cd frontend
+npm run dev
+
+# Update frontend
+git pull
+
+# Update backend
+./init-backend.sh
