@@ -1,0 +1,11 @@
+chmod +x init_backend.sh
+./init_backend.sh
+
+/frontend
+npm i && npm run dev
+
+/backend
+npx prisma migrate
+npx prisma generate --name 'exampleUser1'
+npm i && npm run dev
+
