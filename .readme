@@ -1,11 +1,24 @@
-chmod +x init_backend.sh
-./init_backend.sh
+## Project Setup
 
-/frontend
-npm i && npm run dev
+1. Clone the repository:
+```bash
+git clone https://github.com/Ten-Dark/IT-Hub
 
-/backend
-npx prisma migrate
-npx prisma generate --name 'exampleUser1'
-npm i && npm run dev
+./init-backend.sh
 
+cd frontend
+npm install
+
+# Backend
+cd backend
+npm run dev
+
+# Frontend (in separate terminal)
+cd frontend
+npm run dev
+
+# Update frontend
+git pull
+
+# Update backend
+./init-backend.sh
