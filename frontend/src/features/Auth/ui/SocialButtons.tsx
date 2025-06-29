@@ -11,7 +11,7 @@ const SocialContainer = styled.div`
 `;
 
 const SocialButton = styled.div`
-  //border: 1px solid rgba(0,0,0, .3);
+  border: 1px solid rgba(0,0,0, .1);
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
   border-radius: 100%;
   height: 3rem;

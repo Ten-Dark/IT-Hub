@@ -13,13 +13,15 @@ export const Auth: React.FC = () => {
           <h3>Добро пожаловать!</h3>
           <p>Введите свои персональные данные и начните изучать!</p>
           <S.Sign onClick={() => setClick((value) => !value)}>
-            Регистрация
+            Войти
           </S.Sign>
         </S.RightCaption>
         <S.LeftCaption $click={click}>
           <h3>С возвращением!</h3>
           <p>Чтобы продолжить войдите под вашими персональными данными</p>
-          <S.Sign onClick={() => setClick((value) => !value)}>Войти</S.Sign>
+          <S.Sign onClick={() => setClick((value) => !value)}>
+              Регистрация
+          </S.Sign>
         </S.LeftCaption>
       </S.MainOverlay>
       <S.LeftOverlay $click={click}>

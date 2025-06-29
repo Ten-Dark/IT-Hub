@@ -38,8 +38,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
           </S.Welcome>
           <SocialButtons />
           <S.Separator>
-            или используйте
-            {mode === 'signUp' ? ' почту для регистрации' : 'аккаунт'}
+            или
           </S.Separator>
           {mode === 'signUp' && (
             <Field name={'login'}>
