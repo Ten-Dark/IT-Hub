@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import * as S from './Auth.styled.ts';
 import { AuthForm } from '@/features/Auth/ui/AuthForm.tsx';
-import { SignInSchema, SignUpSchema } from '@/features/Auth/Auth.types.ts';
+import {
+  AuthFormValues,
+  SignInSchema,
+  SignUpSchema,
+} from '@/features/Auth/Auth.types.ts';
+import { registerUser } from '@/features/Auth/api/authApi.ts';
+import { Button } from '@/features/Auth/ui/Button.tsx';
 
 export const Auth: React.FC = () => {
   const [click, setClick] = React.useState<boolean>(false);
+
+  const handleSubmit = useCallback(
+    async (values: AuthFormValues, { setSubmitting }) => {
+      try {
+        const res = await registerUser(values);
+        console.log('User registered', res);
+      } catch (err) {
+        err instanceof Error && setSubmitting(false);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [],
+  );
 
   return (
     <S.Container>
@@ -12,16 +32,22 @@ export const Auth: React.FC = () => {
         <S.RightCaption $click={click}>
           <h3>Добро пожаловать!</h3>
           <p>Введите свои персональные данные и начните изучать!</p>
-          <S.Sign onClick={() => setClick((value) => !value)}>
+          <Button
+            $variant={'ghost'}
+            onClick={() => setClick((value) => !value)}
+          >
             Войти
-          </S.Sign>
+          </Button>
         </S.RightCaption>
         <S.LeftCaption $click={click}>
           <h3>С возвращением!</h3>
           <p>Чтобы продолжить войдите под вашими персональными данными</p>
-          <S.Sign onClick={() => setClick((value) => !value)}>
-              Регистрация
-          </S.Sign>
+          <Button
+            $variant={'ghost'}
+            onClick={() => setClick((value) => !value)}
+          >
+            Регистрация
+          </Button>
         </S.LeftCaption>
       </S.MainOverlay>
       <S.LeftOverlay $click={click}>
@@ -29,7 +55,7 @@ export const Auth: React.FC = () => {
           mode={'signUp'}
           initialValues={{ login: '', email: '', password: '' }}
           validationSchema={SignUpSchema}
-          onSubmitLabel={'Регистрация'}
+          onSubmit={handleSubmit}
         />
       </S.LeftOverlay>
       <S.RightOverlay $click={click}>
@@ -37,7 +63,7 @@ export const Auth: React.FC = () => {
           mode={'signIn'}
           initialValues={{ login: '', email: '', password: '' }}
           validationSchema={SignInSchema}
-          onSubmitLabel={'Вход'}
+          onSubmit={handleSubmit}
         />
       </S.RightOverlay>
     </S.Container>

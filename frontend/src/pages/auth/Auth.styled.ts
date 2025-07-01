@@ -1,16 +1,14 @@
 import styled from 'styled-components';
+import { Button } from '@/features/Auth/ui/Button.tsx';
 
 export const OverlaySidesGlobal = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-color: white;
   min-width: 50%;
   height: 100%;
   transition: all 0.5s ease-in-out;
-  padding: 4rem;
 `;
 
 export const CaptionGlobal = styled.div`
@@ -63,17 +61,14 @@ export const MainOverlay = styled.div<{ $click: boolean }>`
 `;
 
 export const LeftOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
-  // transform: ${({ $click }) =>
-    $click ? 'translateX(0%)' : 'translateX(100%)'};
   left: 0;
   z-index: ${({ $click }) => ($click ? 4 : 5)};
-  //opacity: ${({ $click }) => ($click ? '0' : '1')};
 
   form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    //align-items: center;
+    //justify-content: center;
     height: 100%;
     width: 100%;
     gap: 10px 0;
@@ -119,23 +114,5 @@ export const RightCaption = styled(CaptionGlobal)<{ $click: boolean }>`
   p {
     font-size: 1rem;
     font-weight: 400;
-  }
-`;
-export const Sign = styled.button`
-  position: absolute;
-  bottom: 35%;
-
-  background-color: transparent;
-  border: 2px solid white;
-  border-radius: 6px;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: white;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-
-  &:hover {
-    scale: 1.04;
   }
 `;

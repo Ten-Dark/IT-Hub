@@ -1,4 +1,3 @@
-// AvatarUpload.styled.ts
 import styled from 'styled-components';
 import { FaImage } from 'react-icons/fa';
 
