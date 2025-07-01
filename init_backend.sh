@@ -90,4 +90,8 @@ else
 fi
 
 echo ""
+echo "Даем права на бэк..."
+sudo chmod -R 777 './backend'
+
+echo ""
 echo "✨ Операция с бэкендом завершена успешно!"
