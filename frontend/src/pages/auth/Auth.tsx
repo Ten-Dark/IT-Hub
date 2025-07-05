@@ -7,7 +7,7 @@ import {
   SignUpSchema,
 } from '@/features/Auth/Auth.types.ts';
 import { registerUser } from '@/features/Auth/api/authApi.ts';
-import { Button } from '@/features/Auth/ui/Button.tsx';
+import { AuthFormButton } from '@/features/Auth/ui/AuthFormButton.tsx';
 
 export const Auth: React.FC = () => {
   const [click, setClick] = React.useState<boolean>(false);
@@ -32,22 +32,22 @@ export const Auth: React.FC = () => {
         <S.RightCaption $click={click}>
           <h3>Добро пожаловать!</h3>
           <p>Введите свои персональные данные и начните изучать!</p>
-          <Button
-            $variant={'ghost'}
+          <AuthFormButton
+            $variant={'outlined'}
             onClick={() => setClick((value) => !value)}
           >
             Войти
-          </Button>
+          </AuthFormButton>
         </S.RightCaption>
         <S.LeftCaption $click={click}>
           <h3>С возвращением!</h3>
           <p>Чтобы продолжить войдите под вашими персональными данными</p>
-          <Button
-            $variant={'ghost'}
+          <AuthFormButton
+            $variant={'outlined'}
             onClick={() => setClick((value) => !value)}
           >
             Регистрация
-          </Button>
+          </AuthFormButton>
         </S.LeftCaption>
       </S.MainOverlay>
       <S.LeftOverlay $click={click}>

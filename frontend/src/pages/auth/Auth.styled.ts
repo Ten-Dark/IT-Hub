@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Button } from '@/features/Auth/ui/Button.tsx';
 
 export const OverlaySidesGlobal = styled.div`
   position: absolute;
@@ -67,11 +66,8 @@ export const LeftOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
   form {
     display: flex;
     flex-direction: column;
-    //align-items: center;
-    //justify-content: center;
     height: 100%;
     width: 100%;
-    gap: 10px 0;
   }
 `;
 
@@ -86,7 +82,6 @@ export const RightOverlay = styled(OverlaySidesGlobal)<{ $click: boolean }>`
     justify-content: center;
     height: 100%;
     width: 100%;
-    gap: 10px 0;
   }
 `;
 

@@ -6,6 +6,7 @@ export const StyledFormik = styled(Formik)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 2px solid yellow;
 `;
 
 export const FormContainer = styled.div`
@@ -19,11 +20,14 @@ export const FormContainer = styled.div`
 `;
 
 export const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  padding: 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
+	padding: 2rem 4rem;
+	gap: 14px 0;
+	width: 400px;
+	height: 100%;
 `;
 
 export const Welcome = styled.h1`
