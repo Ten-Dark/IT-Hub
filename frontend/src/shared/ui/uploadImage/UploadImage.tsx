@@ -2,8 +2,8 @@ import React, { ChangeEvent, useRef } from 'react';
 import * as S from './UploadImage.styled.ts';
 
 interface UploadImgProps {
-  preview: string;
-  onSelect: (f: File) => void;
+  preview: string | null;
+  onSelect: (f: File) => void | null;
 }
 
 export const UploadImage: React.FC<UploadImgProps> = ({

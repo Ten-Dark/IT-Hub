@@ -1,87 +1,81 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import * as yup from 'yup';
 import * as S from './AuthForm.style.ts';
-import { Field, FieldProps, Form, Formik } from 'formik';
-import { Input } from '@/shared/ui';
-import { ValidationError } from '@/shared/ui/ValidationError.styled.ts';
+import { FormikHelpers } from 'formik';
 import { AuthFormValues } from '@/features/Auth/Auth.types.ts';
 import { SocialButtons } from '@/features/Auth/ui/SocialButtons.tsx';
+import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { NextRegistrationSlide } from '@/features/Auth/ui/NextRegistrationSlide.tsx';
+import { AuthFormButton } from '@/features/Auth/ui/AuthFormButton.tsx';
+import { AuthFormFields } from '@/features/Auth/ui/AuthFormFields.tsx';
 
 interface AuthFormProps {
   mode: 'signUp' | 'signIn';
   validationSchema: yup.ObjectSchema<object>;
   initialValues: AuthFormValues;
-  onSubmitLabel: string;
+  onSubmit: (
+    values: AuthFormValues,
+    helpers: FormikHelpers<AuthFormValues>,
+  ) => void;
 }
 
 export const AuthForm: React.FC<AuthFormProps> = ({
   mode,
   validationSchema,
   initialValues,
-  onSubmitLabel,
+  onSubmit,
 }) => {
+  const [step, setStep] = useState<'mainFields' | 'uploadAvatar'>(
+    'mainFields',
+  );
+
+  const goNext = useCallback(() => setStep('uploadAvatar'), []);
+  const goBack = useCallback(() => setStep('mainFields'), []);
+
   return (
-    <Formik<AuthFormValues>
+    <S.StyledFormik<AuthFormValues>
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={onSubmit}
     >
       {({ errors, touched, isSubmitting }) => (
-        <Form>
-          <S.Welcome>
-            {mode === 'signUp' ? 'Создать аккаунт' : 'Авторизация'}
-          </S.Welcome>
-          <SocialButtons />
-          <S.Separator>
-            или используйте
-            {mode === 'signUp' ? ' почту для регистрации' : 'аккаунт'}
-          </S.Separator>
-          {mode === 'signUp' && (
-            <Field name={'login'}>
-              {({ field }: FieldProps) => (
-                <>
-                  <Input {...field} placeholder={'Логин'} />
-                  {errors.login && touched.login && (
-                    <ValidationError>{errors.login}</ValidationError>
-                  )}
-                </>
-              )}
-            </Field>
-          )}
-          <Field name={'email'}>
-            {({ field }: FieldProps) => (
+        <S.FormContainer>
+          <S.StyledForm>
               <>
-                <Input
-                  {...field}
-                  mode={'input'}
-                  placeholder={'example@example.com'}
-                />
-                {errors.email && touched.email && (
-                  <ValidationError>{errors.email}</ValidationError>
+                <S.Welcome>
+                  {mode === 'signUp' ? 'Создать аккаунт' : 'Авторизация'}
+                </S.Welcome>
+
+                <SocialButtons />
+
+                <S.Separator>или</S.Separator>
+
+                <AuthFormFields mode={mode} errors={errors} touched={touched} />
+
+                {mode === 'signUp' ? (
+                  <AuthFormButton
+                    $variant={'primary'}
+                    type={'button'}
+                    disabled={isSubmitting}
+                    onClick={goNext}
+                  >
+                    Далее
+                    <FaArrowAltCircleRight size={24} />
+                  </AuthFormButton>
+                ) : (
+                  <AuthFormButton
+                    $variant={'primary'}
+                    type={'submit'}
+                    disabled={isSubmitting}
+                  >
+                    Войти
+                  </AuthFormButton>
                 )}
+                { mode === 'signUp' && <NextRegistrationSlide step={step} onBack={goBack} />}
               </>
-            )}
-          </Field>
-          <Field name={'password'}>
-            {({ field }: FieldProps) => (
-              <>
-                <Input {...field} type="password" placeholder="Пароль" />
-                {errors.password && touched.password && (
-                  <ValidationError>{errors.password}</ValidationError>
-                )}
-              </>
-            )}
-          </Field>
-          <S.Button type={'submit'} disabled={isSubmitting}>
-            {onSubmitLabel}
-          </S.Button>
-        </Form>
+          </S.StyledForm>
+        </S.FormContainer>
       )}
-    </Formik>
+    </S.StyledFormik>
   );
 };
